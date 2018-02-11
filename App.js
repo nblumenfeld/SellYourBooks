@@ -23,13 +23,19 @@ const instructions = Platform.select({
 });
 
 export default class App extends Component{
+
   constructor(props) {
     super(props);
     this.state = { text: 'Enter Your Email', password: 'Enter Your Password' };
   }
+
   render() {
     return (
       <View style={styles.container}>
+
+        
+
+
         <View>
         <TextInput
           style={{height: 40, borderColor:'black', borderWidth: 1, borderRadius: 10, textAlign: 'center',width: 200}}
@@ -90,3 +96,4 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
 });
+
