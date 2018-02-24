@@ -14,6 +14,9 @@ import {
   View
 } from 'react-native';
 import firebase from 'firebase';
+import Header from './src/components/Header';
+import Footer from './src/components/Footer';
+import BookList from './src/components/BookList';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
@@ -23,43 +26,30 @@ const instructions = Platform.select({
 });
 
 export default class App extends Component{
-
   constructor(props) {
     super(props);
-    this.state = { text: 'Enter Your Email', password: 'Enter Your Password' };
   }
 
+renderAlbums() {
+  firebase.initializeApp({
+    apiKey: "AIzaSyC2-7DXGpnwEojmr-XJlBf340q8f-lR4CA",
+    authDomain: "senior-project-93b55.firebaseapp.com",
+    databaseURL: "https://senior-project-93b55.firebaseio.com",
+    projectId: "senior-project-93b55",
+    storageBucket: "senior-project-93b55.appspot.com",
+    messagingSenderId: "965738840992"
+  });
+}
+
   render() {
+    console.log(this.state);
+
     return (
-      <View style={styles.container}>
-
-        
-
-
-        <View>
-        <TextInput
-          style={{height: 40, borderColor:'black', borderWidth: 1, borderRadius: 10, textAlign: 'center',width: 200}}
-          placeholder="Username"
-          onChangeText={(text) => this.setState({text})}
-        />
-        </View>
-        <View>
-        <TextInput
-          secureTextEntry={true}
-          style={styles.textInput}
-          placeholder="Password"
-          onChangeText={(text) => this.setState({text})}
-        />
-        </View>
-        <View>
-          <Button
-            title="Submit"
-            style={styles.button}
-          />
-        </View>
-        {/* <Text style={{padding: 10, fontSize: 42}}>
-          {this.state.text.split(' ').map((word) => word && '🍕').join(' ')}
-        </Text> */}
+      <View style={{flex:1}} >
+        {/* <LoginForm /> */}
+        <Header headerText={'Test Text'}/>
+        <BookList/>
+        <Footer/>
       </View>
     );
   }
@@ -71,29 +61,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#69696969',
-  },
-  button:{
-    backgroundColor:'#ffffff',
-    borderRadius:10
-  },
-  textInput: {
-    height: 40,
-    borderColor:'black',
-    borderWidth: 1,
-    borderRadius: 10,
-    textAlign: 'center',
-    width: 200
-  },
-
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+  }
 });
+
 
