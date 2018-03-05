@@ -1,83 +1,106 @@
 import React, { Component } from 'react';
 import { 
-    Platform,
-    StyleSheet,
-    Text,
-    TextInput,
-    Button,
-    View
+    Text
 } from 'react-native';
+import firebase from 'firebase';
+import Card from './common/Card';
+import CardSection from './common/CardSection';
+import Input from './common/Input';
+import Spinner from './common/Spinner';
+import Button from './common/Button';
 
 class LoginForm extends Component {
     constructor(props) {
         super(props);
       }
 
-      onButtonClick(){
-        console.log('button pressed');
-      }
+    state={email:'', password:'', error:'', loading: false };
+
+    onButtonPress() {
+        const {email,password,error,loading} = this.state;
+
+        this.setState({error:'',loading:true});
+
+        firebase.auth().signInWithEmailAndPassword(email,password)
+            .then(this.onLoginSuccess.bind(this))
+            .catch( () => {
+                firebase.auth().createUserWithEmailAndPassword(email,password)
+                    .then(this.onLoginSuccess.bind(this))
+                    .catch(this.onLoginFail.bind(this) );
+            }); 
+    }
+
+    onLoginFail() {
+        this.setState({
+            error: 'Authentication failed.',
+            loading:false
+        });
+    }
+
+    onLoginSuccess() {
+        this.setState({
+            email:'',
+            password:'',
+            loading:false,
+            error:'',
+
+        })
+    }
+
+    renderButton() {
+        if(this.state.loading){
+            return <Spinner size='small'/>
+        }
+        
+        return( 
+            <Button onPress={this.onButtonPress.bind(this)}>
+                Log In
+            </Button>
+            );
+    }
       
     render() {
-        return (
-            <View>
-                <View>
-                    <TextInput
-                    style={{height: 40, borderColor:'black', borderWidth: 1, borderRadius: 10, textAlign: 'center',width: 200}}
-                    placeholder="Username"
-                    onChangeText={(text) => this.setState({text})}
+        return ( 
+            <Card>
+                <CardSection>
+                    <Input
+                    label='Email'
+                    placeholder='user@gmail.com'
+                    autoCorrect={false}
+                    value={this.state.email}
+                    onChangeText={email => this.setState({email})} 
                     />
-                </View>
-                <View>
-                    <TextInput
+                </CardSection>
+                <CardSection>
+                    <Input
+                    label='Password'
                     secureTextEntry={true}
-                    style={styles.textInput}
-                    placeholder="Password"
-                    onChangeText={(text) => this.setState({text})}
+                    placeholder='password'
+                    autoCorrect={false}
+                    value={this.state.password}
+                    onChangeText={password => this.setState({password})}
                     />
-                </View>
-                <View>
-                    <Button
-                        title="Submit"
-                        style={styles.button}
-                        onPress={this.onButtonClick()}
-                    />
-                </View>
+                </CardSection>
 
-            </View>
+                <Text style={styles.errorTextStyle}>
+                    {this.state.error}
+                </Text>
+
+                <CardSection>
+                    {this.renderButton()}        
+                </CardSection>
+            </Card>
         );
     }
 }
 
-const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      backgroundColor: '#69696969',
-    },
-    button:{
-      backgroundColor:'#ffffff',
-      borderRadius:10
-    },
-    textInput: {
-      height: 40,
-      borderColor:'black',
-      borderWidth: 1,
-      borderRadius: 10,
-      textAlign: 'center',
-      width: 200
-    },
-  
-    welcome: {
-      fontSize: 20,
-      textAlign: 'center',
-      margin: 10,
-    },
-    instructions: {
-      textAlign: 'center',
-      color: '#333333',
-      marginBottom: 5,
-    },
-  });
+const styles = {
+    errorTextStyle: {
+        fontSize:20,
+        alignSelf:'center',
+        color: 'red' 
+    }
+};
+
 
 export default LoginForm;

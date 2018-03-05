@@ -13,34 +13,32 @@ class BookList extends Component {
     }
     render() {
         return (
-            <ScrollView>
+            <ScrollView contentContainerStyle={styles.tableStyle}>
                 {/* Reference the renderList method here to "loop" through the list and make it appear */}
                 {/* should be styled as a list that has 2 columns and alot of rows*/}
-                <View style={styles.tableStyle}>
-                    <View style={styles.rowStyle}>
-                        <Book/>
-                        <Book/>
-                    </View>
-                    <View style={styles.rowStyle}>
-                        <Book/>
-                        <Book/>
-                    </View>
-                    <View style={styles.rowStyle}>
-                        <Book/>
-                        <Book/>
-                    </View>
-                    <View style={styles.rowStyle}>
-                        <Book/>
-                        <Book/>
-                    </View>
-                    <View style={styles.rowStyle}>
-                        <Book/>
-                        <Book/>
-                    </View>
-                    <View style={styles.rowStyle}>
-                        <Book/>
-                        <Book/>
-                    </View>
+                <View style={styles.rowStyle}>
+                    <Book title={"card1"}/>
+                    <Book title={"card2"}/>
+                </View>
+                <View style={styles.rowStyle}>
+                    <Book/>
+                    <Book/>
+                </View>
+                <View style={styles.rowStyle}>
+                    <Book/>
+                    <Book/>
+                </View>
+                <View style={styles.rowStyle}>
+                    <Book/>
+                    <Book/>
+                </View>
+                <View style={styles.rowStyle}>
+                    <Book/>
+                    <Book/>
+                </View>
+                <View style={styles.rowStyle}>
+                    <Book/>
+                    <Book/>
                 </View>
             </ScrollView>
         );

@@ -1,12 +1,15 @@
 import React from 'react';
 import {Text, Image} from 'react-native';
-import Card from './Card';
-import CardSection from './CardSection';
+import Card from './common/Card';
+import CardSection from './common/CardSection';
+import Button from './common/Button';
 
 
 const Book = (props) => {
     return (
-        <Card>
+        //the on press function should make a popup that presents the user with more info on the specific book
+        //this wont' be worked on until I am pulling data from the database
+        <Card >
             <CardSection>
                 <Image 
                 style={styles.thumbnailStyle}
@@ -17,7 +20,7 @@ const Book = (props) => {
                 <Text>Test Section 1</Text>
             </CardSection>
             <CardSection>
-                <Text>Test Section 2</Text>
+               <Button onPress={() => console.log("Pressed " + props.title)}>View Book</Button>
             </CardSection>
         </Card>
     );

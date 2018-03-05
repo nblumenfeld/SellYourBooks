@@ -1,13 +1,23 @@
 import React from 'react';
-import { Text, View, Button } from 'react-native';
+import { Text, View } from 'react-native';
+import Button from './Button';
 
 const Footer = (props) => {
     return (
     <View style={styles.viewStyle}>
-        <Button title="Test1"/>
-        <Button title="Test2"/>
-        <Button title="Test3"/>
-        <Button title="Test4"/>
+        <Button>
+            Test1
+        </Button>
+        <Button>
+            Test2
+        </Button>
+        <Button>
+            Test3
+        </Button>
+        <Button>
+            Test4
+        </Button>
+        
     </View>
     );
 };
@@ -18,6 +28,7 @@ const styles ={
         flexDirection:'row',
         alignItems: 'center',
         height:60,
+        bottom:0,
         paddingBottom:15,
         shadowColor:'#000',
         shadowOpacity: 0.2,

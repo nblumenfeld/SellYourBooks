@@ -1,10 +1,12 @@
 import React from 'react';
 import { Text, View } from 'react-native';
+import Button from './Button';
 
-const Header = (props) => {
+const Header = ({headerText, children}) => {
     return (
     <View style={styles.viewStyle}>
-        <Text style={styles.textStyle}> {props.headerText} </Text>
+        <Text style={styles.textStyle}> {headerText} </Text>
+        {children}
     </View>
     );
 };
@@ -18,7 +20,9 @@ const styles ={
         shadowColor:'#000',
         shadowOffset: { width:0, height: 2},
         shadowOpacity: 0.2,
-        position: 'relative'
+        position: 'relative',
+        flexDirection:'row',
+        alignItems:'center'
 
     },
     textStyle: {
