@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
 import {Text, ScrollView, View} from 'react-native';
 import Book from './Book';
 
@@ -58,5 +59,12 @@ const styles = {
     }
 }
 
-export default BookList;
+const mapStatToProps = state => {
+    return {
+        searchResults: state.searchResults
+    }
+};
+
+export default connect(mapStatToProps)(BookList);
+
 
