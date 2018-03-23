@@ -5,7 +5,6 @@ import Book from './Book';
 
 class BookList extends Component {
     componentWillMount() {
-        console.log('componentwillmount BookList')
     }
 
     renderItem(){

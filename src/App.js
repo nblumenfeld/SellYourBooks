@@ -15,8 +15,7 @@ import { createStore, applyMiddleware } from 'redux';
 import reducers from './reducers';
 import firebase from 'firebase';
 import ReduxThunk from 'redux-thunk';
-import LoginForm from './components/LoginForm';
-// import Header from './src/components/common/Header';
+import Router from './Router';
 // import Footer from './src/components/common/Footer';
 // import BookList from './src/components/BookList';
 // import Spinner from './src/components/common/Spinner';
@@ -87,7 +86,9 @@ export default class App extends Component{
     const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
     return (
       <Provider store={store}>
-        <LoginForm/>
+        <View style={{flex:1}}>
+          <Router/>
+        </View>
       </Provider>
     );
   }

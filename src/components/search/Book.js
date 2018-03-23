@@ -1,8 +1,8 @@
 import React from 'react';
 import {Text, Image} from 'react-native';
-import Card from './common/Card';
-import CardSection from './common/CardSection';
-import Button from './common/Button';
+import Card from '../common/Card';
+import CardSection from '../common/CardSection';
+import Button from '../common/Button';
 
 
 const Book = (props) => {
@@ -13,7 +13,7 @@ const Book = (props) => {
             <CardSection>
                 <Image 
                 style={styles.thumbnailStyle}
-                source={require('../assets/book.png')}
+                source={require('../../assets/book.png')}
                 />
             </CardSection>
             <CardSection>
