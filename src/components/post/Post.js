@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Text, Picker } from 'react-native';
 import { connect } from 'react-redux';
-import { bookUpdate } from '../../actions';
+import { bookUpdate, bookCreate } from '../../actions';
 // import { Card, CardSection, Input} from '../common';
 import Card from '../common/Card';
 import CardSection from '../common/CardSection';
@@ -9,6 +9,13 @@ import Input from '../common/Input';
 import Button from '../common/Button';
 
 class Post extends Component {
+
+    onButtonPress() {
+        const { title, author, edition, condition, price, picture, notes } =this.props;
+
+        this.props.bookCreate({ title, author, edition, condition: condition || 'E' , price, picture, notes });
+    }
+
     render () {
         return (
             <Card>
@@ -39,8 +46,8 @@ class Post extends Component {
                     />
                 </CardSection>
                 
-                <CardSection style={{flexDirection: 'column'}}>
-                    <Text style={styles.picketTextStyle}>Condition</Text>
+                <CardSection>
+                    <Text style={styles.pickerTextStyle}>Condition</Text>
                     <Picker
                         selectedValue={this.props.condition}
                         onValueChange={value => this.props.bookUpdate({prop:'condition', value})}
@@ -73,7 +80,7 @@ class Post extends Component {
                 </CardSection>
 
                 <CardSection>
-                    <Button>
+                    <Button onPress={this.onButtonPress.bind(this)}>
                         Post!
                     </Button>
                 </CardSection>
@@ -83,7 +90,7 @@ class Post extends Component {
 }
 
 const styles = {
-    picketTextStyle: {
+    pickerTextStyle: {
         fontSize:18,
         paddingLeft:20
     }
@@ -96,5 +103,5 @@ const mapStateToProps = (state) => {
 
 };
 
-export default connect(mapStateToProps,{ bookUpdate })(Post);
+export default connect(mapStateToProps,{ bookUpdate, bookCreate })(Post);
 
