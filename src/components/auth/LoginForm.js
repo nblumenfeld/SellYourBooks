@@ -1,13 +1,25 @@
 import React, { Component } from 'react';
 import { Text, View } from 'react-native';
 import { connect } from 'react-redux';
-import { emailChanged, passwordChanged, loginUser } from '../../actions';
 import firebase from 'firebase';
-import Card from '../common/Card';
-import CardSection from '../common/CardSection';
-import Input from '../common/Input';
-import Spinner from '../common/Spinner';
-import Button from '../common/Button';
+import { 
+    emailChanged, 
+    passwordChanged, 
+    loginUser, 
+    navigateToRegister 
+} from '../../actions';
+// import Card from '../common/Card';
+// import CardSection from '../common/CardSection';
+// import Input from '../common/Input';
+// import Spinner from '../common/Spinner';
+// import Button from '../common/Button';
+import { 
+    Card,
+    CardSection,
+    Input,
+    Button, 
+    Spinner 
+} from '../common';
 
 class LoginForm extends Component{
 
@@ -18,10 +30,14 @@ class LoginForm extends Component{
         this.props.passwordChanged(password);
     }
 
-    onButtonPress() {
+    onButtonPressLogin() {
         const {email,password } = this.props;
 
         this.props.loginUser({email,password});
+    }
+
+    onButtonPressRegister() {
+        this.props.navigateToRegister();
     }
 
     renderError(){
@@ -36,15 +52,20 @@ class LoginForm extends Component{
         }
     }
     
-    renderButton() {
+    renderButtons() {
         if(this.props.loading) {
             return <Spinner size="large" />;
         }
 
         return (
-            <Button onPress={this.onButtonPress.bind(this)}>
-                        Login
-                    </Button>
+            <CardSection>
+                <Button onPress={this.onButtonPressLogin.bind(this)}>
+                    Login
+                </Button>
+                <Button onPress={this.onButtonPressRegister.bind(this)}>
+                    Register
+                </Button>
+            </CardSection>
         );
     }
 
@@ -71,9 +92,9 @@ class LoginForm extends Component{
                 
                 {this.renderError()}
 
-                <CardSection>
-                    {this.renderButton()}
-                </CardSection>
+                <View style={{flex:1}}>
+                    {this.renderButtons()}
+                </View>
             </Card>
         );
     }
@@ -98,7 +119,13 @@ const mapStateToProps = ({ auth }) => {
 };
 
 
-export default connect(mapStateToProps, { emailChanged,passwordChanged, loginUser })(LoginForm);
+export default connect(mapStateToProps, 
+    { 
+    emailChanged, 
+    passwordChanged, 
+    loginUser,
+    navigateToRegister 
+})(LoginForm);
 
 
 

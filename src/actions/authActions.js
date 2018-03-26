@@ -7,7 +7,9 @@ import {
     LOGIN_USER_FAIL,
     LOGIN_USER
  } from './types';
- 
+
+// const { currentUser } = firebase.auth();
+// const dbUser = firebase.database().ref(`/users/${currentUser.uid}`);
 
 export const emailChanged = (text) => {
     return{
@@ -29,16 +31,25 @@ export const loginUser = ({email,password}) => {
 
         firebase.auth().signInWithEmailAndPassword(email,password)
             .then(user => loginUserSuccess(dispatch,user))
-            .catch(() =>{
-                firebase.auth().createUserWithEmailAndPassword(email,password)
-                .then(user => loginUserSuccess(dispatch,user))
-                .catch(() => loginUserFail(dispatch)); 
+            .catch(error =>{
+                loginUserFail(dispatch, 'Invalid Email or Password' );
+                //This needs to prompt the user to create an account
+                // firebase.auth().createUserWithEmailAndPassword(email,password)
+                // .then(user => loginUserSuccess(dispatch,user))
+                // .catch(() => loginUserFail(dispatch)); 
             }); 
     };
 };
 
-const loginUserFail = (dispatch) => {
-    dispatch({ type: LOGIN_USER_FAIL });
+export const navigateToRegister = () => {
+    return Actions.register();
+}
+
+const loginUserFail = (dispatch, error) => {
+    dispatch({ 
+        type: LOGIN_USER_FAIL, 
+        payload: error
+    });
 };
 
 const loginUserSuccess = (dispatch, user) => {

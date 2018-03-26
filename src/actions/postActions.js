@@ -14,4 +14,5 @@ export const bookCreate = ( { title, author, edition, condition, price, picture,
     const { currentUser } = firebase.auth();
     firebase.database().ref(`/users/${currentUser.uid}/posts`)
         .push({ title, author, edition, condition, price, picture, notes });
+    //copy the newly created post to a post section in school (after user is connected to school) for faster searching
 };

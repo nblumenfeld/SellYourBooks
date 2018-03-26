@@ -39,4 +39,4 @@ const styles ={
         fontSize:20
     }
 }
-export default Footer;
+export { Footer };
