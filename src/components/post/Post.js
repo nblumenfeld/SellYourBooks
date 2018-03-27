@@ -2,16 +2,12 @@ import React, { Component } from 'react';
 import { Text, Picker } from 'react-native';
 import { connect } from 'react-redux';
 import { bookUpdate, bookCreate } from '../../actions';
-// import { Card, CardSection, Input} from '../common';
-import Card from '../common/Card';
-import CardSection from '../common/CardSection';
-import Input from '../common/Input';
-import Button from '../common/Button';
+import { Card, CardSection, Input, Button} from '../common';
 
 class Post extends Component {
 
     onButtonPress() {
-        const { title, author, edition, condition, price, picture, notes } =this.props;
+        const { title, author, edition, condition, price, picture, notes } = this.props;
 
         this.props.bookCreate({ title, author, edition, condition: condition || 'E' , price, picture, notes });
     }
@@ -52,7 +48,7 @@ class Post extends Component {
                         selectedValue={this.props.condition}
                         onValueChange={value => this.props.bookUpdate({prop:'condition', value})}
                         style={{flex:1}}
-                    >
+                        >
                         <Picker.Item label="Excellent" value="E"/>
                         <Picker.Item label="Good" value="G"/>
                         <Picker.Item label="OK" value="O"/>
@@ -92,7 +88,8 @@ class Post extends Component {
 const styles = {
     pickerTextStyle: {
         fontSize:18,
-        paddingLeft:20
+        paddingLeft:20,
+        flex:1
     }
 }
 

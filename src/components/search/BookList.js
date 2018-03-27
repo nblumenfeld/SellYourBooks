@@ -1,46 +1,39 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import {Text, ScrollView, View} from 'react-native';
+import { ListView } from 'react-native';
+import { booksFetch } from '../../actions';
 import Book from './Book';
 
 class BookList extends Component {
     componentWillMount() {
+        this.props.booksFetch();
+        this.createDataSource(this.props);
+        
     }
 
-    renderItem(){
-        //return a state mapping of the single items you want (ex a book)
-        //don't forget to use the .map function to intantiate the loop
+    componentWillReceiveProps(nextProps) {
+        this.createDataSource(nextProps);
+    }
+
+    createDataSource({ search }) {
+        const ds = new ListView.DataSource({
+            rowHasChanged: (r1,r2) => r1 != r2
+        });
+
+        this.dataSource = ds.cloneWithRows(search);
+    }
+
+    renderRow(book){
+        return <Book book={book}/>
     }
     render() {
         return (
-            <ScrollView contentContainerStyle={styles.tableStyle}>
-                {/* Reference the renderList method here to "loop" through the list and make it appear */}
-                {/* should be styled as a list that has 2 columns and alot of rows*/}
-                <View style={styles.rowStyle}>
-                    <Book title={"card1"}/>
-                    <Book title={"card2"}/>
-                </View>
-                <View style={styles.rowStyle}>
-                    <Book/>
-                    <Book/>
-                </View>
-                <View style={styles.rowStyle}>
-                    <Book/>
-                    <Book/>
-                </View>
-                <View style={styles.rowStyle}>
-                    <Book/>
-                    <Book/>
-                </View>
-                <View style={styles.rowStyle}>
-                    <Book/>
-                    <Book/>
-                </View>
-                <View style={styles.rowStyle}>
-                    <Book/>
-                    <Book/>
-                </View>
-            </ScrollView>
+           <ListView
+                enableEmptySections
+                dataSource={this.dataSource}
+                renderRow={this.renderRow}
+            />
         );
     }
 };
@@ -59,11 +52,13 @@ const styles = {
 }
 
 const mapStatToProps = state => {
-    return {
-        searchResults: state.searchResults
-    }
+   const search = _.map(state.search, (val,uid) => {
+    return {...val, uid};
+   });
+
+   return { search };
 };
 
-export default connect(mapStatToProps)(BookList);
+export default connect(mapStatToProps, { booksFetch })(BookList);
 
 

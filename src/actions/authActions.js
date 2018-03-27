@@ -33,17 +33,10 @@ export const loginUser = ({email,password}) => {
             .then(user => loginUserSuccess(dispatch,user))
             .catch(error =>{
                 loginUserFail(dispatch, 'Invalid Email or Password' );
-                //This needs to prompt the user to create an account
-                // firebase.auth().createUserWithEmailAndPassword(email,password)
-                // .then(user => loginUserSuccess(dispatch,user))
-                // .catch(() => loginUserFail(dispatch)); 
             }); 
     };
 };
 
-export const navigateToRegister = () => {
-    return Actions.register();
-}
 
 const loginUserFail = (dispatch, error) => {
     dispatch({ 

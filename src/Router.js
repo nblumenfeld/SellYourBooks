@@ -6,10 +6,6 @@ import BookList from './components/search/BookList';
 import Post from './components/post/Post';
 
 const RouterComponent = () => {
-
-
-
-
     return (
         <Router>
             {/* This is the parent scene, needed to make the rest work*/}
