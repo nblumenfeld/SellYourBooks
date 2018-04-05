@@ -8,9 +8,6 @@ import {
     LOGIN_USER
  } from './types';
 
-// const { currentUser } = firebase.auth();
-// const dbUser = firebase.database().ref(`/users/${currentUser.uid}`);
-
 export const emailChanged = (text) => {
     return{
         type: EMAIL_CHANGED,

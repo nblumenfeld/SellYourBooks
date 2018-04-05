@@ -14,16 +14,19 @@ export const bookUpdate = ( { prop, value } ) => {
 
 export const bookCreate = ( { title, author, edition, condition, price, picture, notes }) => {
     const { currentUser } = firebase.auth();
-    const school = null;
-    const post = null;
-    const postId = null;
-
     return (dispatch) => {
-        firebase.database().ref(`/users/${currentUser.uid}/posts`)
-        .push({ title, author, edition, condition, price, picture, notes })
-        .then(() =>{
-            dispatch({type:BOOK_CREATE})
-            Actions.pop();
+    firebase.database().ref(`/users/${currentUser.uid}/posts`)
+    .push({ title, author, edition, condition, price, picture, notes })
+    .then((reference) =>{
+        firebase.database().ref(`/users/${currentUser.uid}/school`).on('value',snapshot => {
+            let userSchool = snapshot.val();
+            firebase.database().ref(`/Schools/${userSchool}/Posts`)
+            .push({ uid:currentUser.uid, refId:reference.key, title, author, edition, condition, price, picture, notes })
+            .then(() => {
+                dispatch({type:BOOK_CREATE})
+                Actions.pop();
+                });
+            });
         });
     };
     
