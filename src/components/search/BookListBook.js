@@ -4,10 +4,9 @@ import { Card, CardSection, Button  } from '../common';
 import { Actions } from 'react-native-router-flux';
 
 
-class Book extends Component {
+class BookListBook extends Component {
 
     onBookPress() {
-        Actions.postEdit({ book:this.props.book });
     }
 
     render() {
@@ -39,4 +38,4 @@ const styles = {
         height:100
     }
 }
-export default Book;
+export default BookListBook;

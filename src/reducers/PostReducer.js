@@ -1,6 +1,7 @@
 import {
     BOOK_UPDATE,
     BOOK_CREATE,
+    BOOK_SAVE_SUCCESS,
     BOOKS_FETCH_SUCCESS
 } from '../actions/types';
 
@@ -19,6 +20,8 @@ export default (state = INITIAL_STATE, action ) => {
         case BOOK_UPDATE:
             return { ...state, [action.payload.prop]: action.payload.value };
         case BOOK_CREATE:
+            return INITIAL_STATE;
+        case BOOK_SAVE_SUCCESS:
             return INITIAL_STATE;
         default:
          return state;

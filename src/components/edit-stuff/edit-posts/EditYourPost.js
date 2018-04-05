@@ -2,12 +2,12 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import { ListView } from 'react-native';
-import { booksFetch } from '../../actions';
-import BookListBook from './BookListBook';
+import { postsFetch } from '../../../actions';
+import Book from '../../search/Book';
 
-class BookList extends Component {
+class EditYourPost extends Component {
     componentWillMount() {
-        this.props.booksFetch();
+        this.props.postsFetch();
         this.createDataSource(this.props);
         
     }
@@ -16,16 +16,16 @@ class BookList extends Component {
         this.createDataSource(nextProps);
     }
 
-    createDataSource({ search }) {
+    createDataSource({ edit }) {
         const ds = new ListView.DataSource({
             rowHasChanged: (r1,r2) => r1 != r2
         });
 
-        this.dataSource = ds.cloneWithRows(search);
+        this.dataSource = ds.cloneWithRows(edit);
     }
 
     renderRow(book){
-        return <BookListBook book={book}/>
+        return <Book book={book}/>
     }
     render() {
         return (
@@ -34,7 +34,6 @@ class BookList extends Component {
                 dataSource={this.dataSource}
                 renderRow={this.renderRow}
             />
-            
         );
     }
 };
@@ -53,13 +52,13 @@ const styles = {
 }
 
 const mapStatToProps = state => {
-   const search = _.map(state.search, (val,uid) => {
+   const edit = _.map(state.edit, (val,uid) => {
     return {...val, uid};
    });
 
-   return { search };
+   return { edit };
 };
 
-export default connect(mapStatToProps, { booksFetch })(BookList);
+export default connect(mapStatToProps, { postsFetch })(EditYourPost);
 
 
