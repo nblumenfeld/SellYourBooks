@@ -7,7 +7,7 @@ import { CardSection, Input } from '../common';
 class PostForm extends Component{
     render() {
         return(
-            <View style={{flex:1}}>
+            <View>
                 <CardSection>
                     <Input
                         label="Title"
