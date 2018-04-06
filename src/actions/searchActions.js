@@ -22,7 +22,9 @@ export const booksFetch = ({search}) => {
             firebase.database().ref(`/users/${currentUser.uid}/school`).on('value',snapshot => {
                 let userSchool = snapshot.val();
                 firebase.database().ref(`/Schools/${userSchool}/Posts`)
-                .orderByChild('title').equalTo(search)
+                .orderByChild('title')
+                .startAt(search)
+                .endAt(search+"\uf8ff")
                 .on('value', snapshot => {
                     // console.log(snapshot.val());
                     dispatch({ type: BOOKS_FETCH_SUCCESS, payload: snapshot.val() })
