@@ -3,7 +3,8 @@ import { Actions } from 'react-native-router-flux';
 import { 
     BOOK_UPDATE,
     BOOK_CREATE,
-    BOOK_SAVE_SUCCESS
+    BOOK_SAVE_SUCCESS,
+    BOOK_DELETE_SUCCESS
 } from './types';
 
 export const bookUpdate = ( { prop, value } ) => {
@@ -58,7 +59,7 @@ export const bookSave = ( { title, author, edition, condition, price, picture, n
 export const bookDelete = ({ comRefId, uid }) => {
     const { currentUser } = firebase.auth();
 
-    return () => {
+    return (dispatch) => {
         firebase.database().ref(`/users/${currentUser.uid}/posts/${uid}`)
         .remove()
         .then(() => {
@@ -67,6 +68,7 @@ export const bookDelete = ({ comRefId, uid }) => {
                 firebase.database().ref(`/Schools/${userSchool}/Posts/${comRefId}`)
                 .remove()
                 .then(() => {
+                    dispatch({type:BOOK_DELETE_SUCCESS});
                     Actions.pop();
                     });
                 });

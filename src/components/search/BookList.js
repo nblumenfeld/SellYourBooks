@@ -1,15 +1,16 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import { ListView } from 'react-native';
+import { ListView, View } from 'react-native';
 import { booksFetch } from '../../actions';
 import BookListBook from './BookListBook';
+import { Input, Button, CardSection } from '../common';
 
 class BookList extends Component {
+    state = { search:'' }
     componentWillMount() {
-        this.props.booksFetch();
+        this.props.booksFetch({search:this.state.search});
         this.createDataSource(this.props);
-        
     }
 
     componentWillReceiveProps(nextProps) {
@@ -27,13 +28,31 @@ class BookList extends Component {
     renderRow(book){
         return <BookListBook book={book}/>
     }
+
+    onSearch() {
+        this.props.booksFetch({search:this.state.search});
+        this.createDataSource(this.props);
+    }
+
     render() {
         return (
-           <ListView
-                enableEmptySections
-                dataSource={this.dataSource}
-                renderRow={this.renderRow}
-            />
+            <View>
+                <CardSection>
+                    <Input
+                    placeholder="Title"
+                    value={this.state.search}
+                    onChangeText={search => this.setState({search})}
+                    />
+                    <Button onPress={this.onSearch.bind(this)}>
+                        Search
+                    </Button>
+                </CardSection>
+                <ListView
+                    enableEmptySections
+                    dataSource={this.dataSource}
+                    renderRow={this.renderRow}
+                />
+            </View>
             
         );
     }

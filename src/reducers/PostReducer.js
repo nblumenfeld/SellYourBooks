@@ -2,7 +2,8 @@ import {
     BOOK_UPDATE,
     BOOK_CREATE,
     BOOK_SAVE_SUCCESS,
-    BOOKS_FETCH_SUCCESS
+    BOOKS_FETCH_SUCCESS,
+    BOOK_DELETE_SUCCESS
 } from '../actions/types';
 
 const INITIAL_STATE = {
@@ -22,6 +23,8 @@ export default (state = INITIAL_STATE, action ) => {
         case BOOK_CREATE:
             return INITIAL_STATE;
         case BOOK_SAVE_SUCCESS:
+            return INITIAL_STATE;
+        case BOOK_DELETE_SUCCESS:
             return INITIAL_STATE;
         default:
          return state;

@@ -3,17 +3,31 @@ import {
     BOOKS_FETCH_SUCCESS
 } from './types';
 
-export const booksFetch = () => {
+export const booksFetch = ({search}) => {
     const { currentUser } = firebase.auth();
-
-    return (dispatch) => {
-        firebase.database().ref(`/users/${currentUser.uid}/school`).on('value',snapshot => {
-            let userSchool = snapshot.val();
-            firebase.database().ref(`/Schools/${userSchool}/Posts`)
+    if(search == ''){
+        return (dispatch) => {
+            firebase.database().ref(`/users/${currentUser.uid}/school`).on('value',snapshot => {
+                let userSchool = snapshot.val();
+                firebase.database().ref(`/Schools/${userSchool}/Posts`)
                 .on('value', snapshot => {
                     // console.log(snapshot.val());
                     dispatch({ type: BOOKS_FETCH_SUCCESS, payload: snapshot.val() })
                 });
-        });
+            });
+        }
+    }
+    else{
+        return (dispatch) => {
+            firebase.database().ref(`/users/${currentUser.uid}/school`).on('value',snapshot => {
+                let userSchool = snapshot.val();
+                firebase.database().ref(`/Schools/${userSchool}/Posts`)
+                .orderByChild('title').equalTo(search)
+                .on('value', snapshot => {
+                    // console.log(snapshot.val());
+                    dispatch({ type: BOOKS_FETCH_SUCCESS, payload: snapshot.val() })
+                });
+            });
+        }
     }
 }

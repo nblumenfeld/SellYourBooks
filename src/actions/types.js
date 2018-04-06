@@ -6,6 +6,7 @@ export const LOGIN_USER = 'login_user';
 export const BOOK_UPDATE = 'book_update';
 export const BOOK_CREATE = 'book_create';
 export const BOOK_SAVE_SUCCESS = 'book_save_success';
+export const BOOK_DELETE_SUCCESS = 'book_delete_success';
 export const BOOKS_FETCH_SUCCESS = 'book_fetch_success';
 export const UPDATE_REGISTRATION_FORM = 'update_registration_form';
 export const REGISTER_USER = 'register_user';
