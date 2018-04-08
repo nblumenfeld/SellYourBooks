@@ -6,6 +6,7 @@ import BookList from './components/search/BookList';
 import Post from './components/post/Post';
 import EditYourPost from './components/edit-stuff/edit-posts/EditYourPost';
 import PostEdit from './components/edit-stuff/edit-posts/PostEdit';
+import AccountEditForm from './components/auth/AccountEditForm';
 
 const RouterComponent = () => {
     return (
@@ -28,7 +29,8 @@ const RouterComponent = () => {
                     initial />
                     <Scene key="post" component={Post} title="Post a book!" />
                     <Scene key="postEdit" component={PostEdit} title="Edit Post" />
-                    <Scene key="editPosts" component={EditYourPost} title="Your Posts" />
+                    <Scene key="editPosts" component={EditYourPost} title="Your Posts" rightTitle="Edit Account" onRight={() => Actions.accountEdit()} />
+                    <Scene key="accountEdit" component={AccountEditForm} title="Edit Account"/>
                 </Scene>
             </Scene>
         </Router>
