@@ -10,7 +10,7 @@ const INITIAL_STATE = {
     password:'',
     firstName:'',
     lastName:'',
-    school:'',
+    school:'Westminster',
     loading:false,
     error:''
 };

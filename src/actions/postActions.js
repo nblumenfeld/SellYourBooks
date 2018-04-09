@@ -14,19 +14,19 @@ export const bookUpdate = ( { prop, value } ) => {
     };
 };
 
-export const bookCreate = ( { title, author, edition, condition, price, picture, notes }) => {
+export const bookCreate = ( { title, author, edition, courseId, condition, price, picture, notes }) => {
     const { currentUser } = firebase.auth();
     return (dispatch) => {
     firebase.database().ref(`/users/${currentUser.uid}/posts`)
-    .push({ title, author, edition, condition, price, picture, notes })
+    .push({ title, author, edition, courseId, condition, price, picture, notes })
     .then((userPostReference) =>{
         firebase.database().ref(`/users/${currentUser.uid}/school`).on('value',snapshot => {
             let userSchool = snapshot.val();
             firebase.database().ref(`/Schools/${userSchool}/Posts`)
-            .push({ refId:userPostReference.key, title, author, edition, condition, price, picture, notes })
+            .push({ refId:userPostReference.key, title, author, edition, courseId, condition, price, picture, notes })
             .then((communalPostReference) => {
                 firebase.database().ref(`/users/${currentUser.uid}/posts/${userPostReference.key}`)
-                .set({ comRefId:communalPostReference.key, title, author, edition, condition, price, picture, notes })
+                .set({ comRefId:communalPostReference.key, title, author, edition, courseId, condition, price, picture, notes })
                 dispatch({type:BOOK_CREATE})
                 Actions.pop();
                 });
@@ -37,16 +37,16 @@ export const bookCreate = ( { title, author, edition, condition, price, picture,
     //copy the newly created post to a post section in school (after user is connected to school) for faster searching
 };
 
-export const bookSave = ( { title, author, edition, condition, price, picture, notes, communalPostId, refId } ) => {
+export const bookSave = ( { title, author, edition, courseId, condition, price, picture, notes, communalPostId, refId } ) => {
     const { currentUser } = firebase.auth();
     return (dispatch) => {
         firebase.database().ref(`/users/${currentUser.uid}/posts/${refId}`)
-        .set({ title, author, edition, condition, price, picture, notes })
+        .update({ title, author, edition, courseId, condition, price, picture, notes })
         .then((reference) =>{
             firebase.database().ref(`/users/${currentUser.uid}/school`).on('value',snapshot => {
                 let userSchool = snapshot.val();
                 firebase.database().ref(`/Schools/${userSchool}/Posts/${communalPostId}`)
-                .set({ refId, title, author, edition, condition, price, picture, notes })
+                .update({ refId, title, author, edition, courseId, condition, price, picture, notes })
                 .then(() => {
                     dispatch({type:BOOK_SAVE_SUCCESS});
                     Actions.pop();

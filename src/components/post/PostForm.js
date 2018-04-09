@@ -2,9 +2,17 @@ import React, { Component } from  'react';
 import { View, Text, Picker } from 'react-native';
 import { connect } from 'react-redux';
 import { bookUpdate } from '../../actions';
-import { CardSection, Input } from '../common';
+import { CardSection, Input, Button } from '../common';
 
 class PostForm extends Component{
+    takePhoto(){
+
+    }
+
+    maybeRenderImage(){
+        
+    }
+
     render() {
         return(
             <View>
@@ -34,6 +42,22 @@ class PostForm extends Component{
                         onChangeText={value => this.props.bookUpdate({prop:'edition',value})}
                     />
                 </CardSection>
+
+                <CardSection>
+                    <Input
+                        label="Course ID"
+                        placeholder="Course ID"
+                        value={this.props.courseId}
+                        onChangeText={value => this.props.bookUpdate({prop:'courseId',value})}
+                    />
+                </CardSection>
+
+                <CardSection>
+                    <Text style={{flex:1}}>Picture:</Text>
+                    <Button onPress={this.takePhoto.bind(this)}>Take Picture</Button>
+                </CardSection>
+
+                {this.maybeRenderImage()}
                 
                 <CardSection>
                     <Text style={styles.pickerTextStyle}>Condition</Text>
@@ -81,9 +105,9 @@ const styles = {
 }
 
 const mapStateToProps = (state) => {
-    const { title, author, edition, condition, price, picture, notes } = state.post;
+    const { title, author, edition, courseId, condition, price, picture, notes } = state.post;
 
-    return { title, author, edition, condition, price, picture, notes };
+    return { title, author, edition, courseId, condition, price, picture, notes };
 
 };
 

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import { Text } from 'react-native';
 import { connect } from 'react-redux';
 import { Button, Card, CardSection, Input } from '../common';
-import { fetchUser, updateUser } from '../../actions';
+import { fetchUser, updateUser, userSave, logout, resetPassword } from '../../actions';
 
 
 class AccountEditForm extends Component {
@@ -10,47 +11,61 @@ class AccountEditForm extends Component {
         this.props.fetchUser();
     }
 
+    onSave(){
+        const { email, password, firstName,lastName, error } = this.props;
+        
+        this.props.userSave({email,password,firstName,lastName});
+    }
+
+    renderError(){
+        if(this.props.error != ''){
+            return(
+                <Text style={styles.errorTextStyle}>{this.props.error}</Text>
+            )
+        }
+    }
+
     render() {
         return (
                 <Card>
                     <CardSection>
                         <Input
-                        label="Email"
+                        label="Email:"
                         value={this.props.email}
-                        onChangeText={email => this.props.updateUser({email})}
+                        onChangeText={value => this.props.updateUser({prop:'email',value})}
                         />
                     </CardSection>
 
                     <CardSection>
                         <Input
-                        label="Password"
-                        value={this.props.password}
-                        onChangeText={password => this.props.updateUser({password})}
-                        />
-                    </CardSection>
-
-                    <CardSection>
-                        <Input
-                        label="First Name"
+                        label="First Name:"
                         value={this.props.firstName}
-                        onChangeText={firstName => this.props.updateUser({firstName})}
+                        onChangeText={value => this.props.updateUser({prop:'firstName',value})}
                         />
                     </CardSection>
 
                     <CardSection>
                         <Input
-                        label="Last Name"
+                        label="Last Name:"
                         value={this.props.lastName}
-                        onChangeText={lastName => this.props.updateUser({lastName})}
+                        onChangeText={value => this.props.updateUser({prop:'lastName',value})}
                         />
                     </CardSection>
 
+                    <CardSection>
+                        {this.renderError()}
+                    </CardSection>
 
                     <CardSection>
-                        <Button>Save</Button>
+                        <Button onPress={this.onSave.bind(this)}>Save Changes</Button>
                     </CardSection>
+
                     <CardSection>
-                        <Button>Logout</Button>
+                        <Button onPress={() => this.props.resetPassword()}>Reset Password</Button>
+                    </CardSection>
+
+                    <CardSection>
+                        <Button onPress={()=> this.props.logout()}>Logout</Button>
                     </CardSection>
                 </Card>
         );
@@ -58,9 +73,23 @@ class AccountEditForm extends Component {
 }
 
 const mapStateToProps = (state) => {
-    const { email, password, firstName,lastName, error } = state.auth;
+    const { email, password, firstName,lastName, error } = state.account;
 
     return { email, password, firstName,lastName, error };
 }
 
-export default connect(mapStateToProps,{fetchUser, updateUser})(AccountEditForm)
+const styles = {
+    errorTextStyle: {
+        fontSize:20,
+        alignSelf:'center',
+        color: 'red' 
+    }
+};
+
+export default connect(mapStateToProps,{
+    fetchUser, 
+    updateUser,
+    userSave,
+    logout,
+    resetPassword
+})(AccountEditForm)

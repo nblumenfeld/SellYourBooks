@@ -7,6 +7,7 @@ export const FETCH_USER = 'fetch_user';
 export const UPDATE_USER = 'update_user';
 export const UPDATE_USER_SUCCESS = 'update_user_success';
 export const UPDATE_USER_FAIL = 'update_user_fail';
+export const PASSWORD_RESET_SENT = 'password_reset_sent';
 export const LOGOUT_SUCCESS ='logout_success';
 export const BOOK_UPDATE = 'book_update';
 export const BOOK_CREATE = 'book_create';

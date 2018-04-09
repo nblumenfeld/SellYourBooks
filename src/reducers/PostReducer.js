@@ -10,6 +10,7 @@ const INITIAL_STATE = {
     title:'',
     author:'',
     edition:'',
+    courseId:'',
     condition:'',
     price:'',
     picture:'',

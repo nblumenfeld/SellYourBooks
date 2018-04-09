@@ -25,6 +25,7 @@ class EditYourPost extends Component {
     }
 
     renderRow(book){
+        console.log(book);
         return <Book book={book}/>
     }
     render() {
@@ -51,7 +52,7 @@ const styles = {
     }
 }
 
-const mapStatToProps = state => {
+const mapStateToProps = state => {
    const edit = _.map(state.edit, (val,uid) => {
     return {...val, uid};
    });
@@ -59,6 +60,6 @@ const mapStatToProps = state => {
    return { edit };
 };
 
-export default connect(mapStatToProps, { postsFetch })(EditYourPost);
+export default connect(mapStateToProps, { postsFetch })(EditYourPost);
 
 

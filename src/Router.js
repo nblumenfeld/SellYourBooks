@@ -7,6 +7,7 @@ import Post from './components/post/Post';
 import EditYourPost from './components/edit-stuff/edit-posts/EditYourPost';
 import PostEdit from './components/edit-stuff/edit-posts/PostEdit';
 import AccountEditForm from './components/auth/AccountEditForm';
+import ViewPost from './components/search/ViewPost';
 
 const RouterComponent = () => {
     return (

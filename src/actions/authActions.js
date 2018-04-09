@@ -35,46 +35,6 @@ export const loginUser = ({email,password}) => {
     };
 };
 
-export const fetchUser = () => {
-    const currentUser = firebase.auth();
-
-    return (dispatch) => {
-        firebase.database().ref(`users/${currentUser.uid}`)
-        .on('value', snapshot => {
-            dispatch({type:FETCH_USER, payload: snapshot.val()});
-        });
-    ;}
-};
-
-export const updateUser = ( { prop, value } ) => {
-    return {
-        type: UPDATE_USER,
-        payload: { prop, value }
-    };
-};
-
-export const userSave = ( { email,password, firstName, lastName } ) => {
-    if(email){
-        return (dispatch) => {
-            updateUserWithEmailAndPassword(dispatch,email, password, firstName,lastName);
-        };
-    }
-    else {
-        return (dispatch) => {
-            updateUserWithoutEmail(dispatch,firstName,lastName);
-        }
-    }
-};
-
-export const logout = () =>{
-    return(dispatch) => {
-        firebase.auth().signOut()
-        .then(() => logoutSuccess(dispatch))
-        .catch(() => logoutFail(dispatch));
-    };
-}
-
-
 const loginUserFail = (dispatch, error) => {
     dispatch({ 
         type: LOGIN_USER_FAIL, 
@@ -91,36 +51,3 @@ const loginUserSuccess = (dispatch, user) => {
     Actions.main();
 };
 
-const updateUserWithEmailAndPassword = (dispatch, email, firstName, lastName)  =>{
-    const { currentUser } = firebase.auth();
-    return (dispatch) => {
-        currentUser.updateEmail(email)
-        .then(() => {
-            firebase.database().ref(`/users/${currentUser.uid}`)
-            .set({ email, firstName, lastName })
-            .then(() =>{
-                dispatch({type:UPDATE_USER_SUCCESS});
-                Actions.pop();
-            });
-        })
-        .catch(() => dispatch({type:UPDATE_USER_FAIL}));
-    };
-};
-
-updateUserWithoutEmail = (dispatch,firstName,lastName) => {
-    return (dispatch) => {
-            firebase.database().ref(`/users/${currentUser.uid}`)
-            .set({ firstName, lastName })
-            .then(() =>{
-                dispatch({type:UPDATE_USER_SUCCESS});
-                Actions.pop();
-            });
-    };
-};
-
-const logoutSuccess = (dispatch) => {
-    dispatch({
-        type:LOGOUT_SUCCESS
-    });
-    Actions.root();
-}

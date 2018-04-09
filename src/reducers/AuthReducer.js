@@ -12,8 +12,6 @@ import {
 
 const INITIAL_STATE = { 
     email:'',
-    firstName:'',
-    lastName:'',
     password:'',
     user: null,
     error:'',
@@ -32,13 +30,6 @@ export default (state=INITIAL_STATE, action) => {
             return { ...state, ...INITIAL_STATE, user: action.payload };
         case LOGIN_USER_FAIL:
             return { ...state, error: action.payload, password: '', loading: false };
-        case UPDATE_USER:
-            return { ...state, [action.payload.prop]: action.payload.value };
-        case FETCH_USER:
-            console.log(action.payload);
-            // return action.payload;
-        case LOGOUT_SUCCESS:
-            return INITIAL_STATE;
         default:
             return state;
         

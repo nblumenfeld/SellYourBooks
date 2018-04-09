@@ -7,9 +7,9 @@ import PostForm from './PostForm';
 class Post extends Component {
 
     onButtonPress() {
-        const { title, author, edition, condition, price, picture, notes } = this.props;
+        const { title, author, edition, courseId, condition, price, picture, notes } = this.props;
 
-        this.props.bookCreate({ title, author, edition, condition: condition || 'E' , price, picture, notes });
+        this.props.bookCreate({ title, author, edition, courseId, condition: condition || 'E' , price, picture, notes });
     }
 
     render () {
@@ -27,9 +27,9 @@ class Post extends Component {
 }
 
 const mapStateToProps = (state) => {
-    const { title, author, edition, condition, price, picture, notes } = state.post;
+    const { title, author, edition,courseId, condition, price, picture, notes } = state.post;
 
-    return { title, author, edition, condition, price, picture, notes };
+    return { title, author, edition,courseId, condition, price, picture, notes };
 
 };
 

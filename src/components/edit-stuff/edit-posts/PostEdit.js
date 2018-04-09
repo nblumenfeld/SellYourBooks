@@ -16,9 +16,11 @@ class PostEdit extends Component{
     }
 
     onButtonPress(){
-        const {title, author, edition, condition, price, picture, notes } = this.props;
+        const {title, author, edition, courseId, condition, price, picture, notes } = this.props;
 
-        this.props.bookSave({ title, author, edition, condition, price, picture, notes, communalPostId:this.props.book.uid, refId: this.props.book.refId });
+        console.log(this.props.book.comRefId);
+
+        this.props.bookSave({ title, author, edition, courseId, condition, price, picture, notes, communalPostId:this.props.book.comRefId, refId: this.props.book.uid });
     }
 
     onAccept() {
@@ -56,9 +58,9 @@ class PostEdit extends Component{
 }
 
 const mapStateToProps = (state) => {
-    const { title, author, edition, condition, price, picture, notes } = state.post;
+    const { title, author, edition, courseId, condition, price, picture, notes } = state.post;
 
-    return { title, author, edition, condition, price, picture, notes };
+    return { title, author, edition, courseId, condition, price, picture, notes };
 }
 
 export default connect(mapStateToProps, {bookUpdate, bookSave, bookDelete})(PostEdit);
