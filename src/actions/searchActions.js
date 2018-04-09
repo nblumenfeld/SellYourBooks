@@ -5,7 +5,7 @@ import {
 
 export const booksFetch = ({search,type}) => {
     const { currentUser } = firebase.auth();
-    if(search == ''){
+    if(search == undefined){
         return (dispatch) => {
             firebase.database().ref(`/users/${currentUser.uid}/school`).on('value',snapshot => {
                 let userSchool = snapshot.val();

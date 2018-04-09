@@ -73,7 +73,8 @@ class BookListBook extends Component {
 const styles = {
     thumbnailStyle:{
         width:100,
-        height:100
+        height:100,
+        justfiyContent:'center'
     }
 }
 export default BookListBook;

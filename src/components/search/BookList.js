@@ -8,7 +8,7 @@ import ChooseSearch from './ChooseSearch';
 import { Input, Button, CardSection } from '../common';
 
 class BookList extends Component {
-    state = { search:'', type:'title',showModal:false }
+    state = { type:'title',showModal:false }
     componentWillMount() {
         this.props.booksFetch({search:this.state.search});
         this.createDataSource(this.props);
@@ -37,7 +37,6 @@ class BookList extends Component {
 
     pickSearchType(){
         this.setState({showModal:true});
-        console.log(this.state.showModal);
     }
 
     onDismiss(){
@@ -47,11 +46,11 @@ class BookList extends Component {
     renderType(){
         switch(this.state.type){
             case 'title':
-                return 'Title';
+                return 'By: Title';
             case 'author':
-                return 'Author';
+                return 'By: Author';
             case 'courseId':
-                return 'Course ID';
+                return 'By: Course ID';
         }
     }
 
@@ -59,18 +58,18 @@ class BookList extends Component {
         return (
             <View>
                 <CardSection>
-                    <Text style={{fontSize:18, flex:.5}}>Search Type:</Text>
-                    <Button onPress={this.pickSearchType.bind(this)}>{this.renderType()}</Button>
-                </CardSection>
-                <CardSection>
                     <Input
+                    style={{flex:2.5}}
                     placeholder="search"
                     value={this.state.search}
-                    onChangeText={search => this.setState({search})}
+                    onChangeText={search => {
+                        if(search != undefined)
+                            this.props.booksFetch({search:search, type:this.state.type});
+                        else
+                            this.props.booksFetch({search:'', type:this.state.type});
+                    }}
                     />
-                    <Button onPress={this.onSearch.bind(this)}>
-                        Search
-                    </Button>
+                    <Button onPress={this.pickSearchType.bind(this)}>{this.renderType()}</Button>
                 </CardSection>
                 <Modal
                     visible={this.state.showModal}

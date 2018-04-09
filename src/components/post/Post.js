@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 import { bookUpdate, bookCreate } from '../../actions';
 import { Card, CardSection, Button} from '../common';
@@ -14,6 +15,7 @@ class Post extends Component {
 
     render () {
         return (
+            <ScrollView style={{flex:1}}>
             <Card>
                 <PostForm {...this.props} />
                 <CardSection>
@@ -22,6 +24,7 @@ class Post extends Component {
                     </Button>
                 </CardSection>
             </Card>
+            </ScrollView>
         )
     }
 }

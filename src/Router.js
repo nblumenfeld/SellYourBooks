@@ -8,6 +8,7 @@ import EditYourPost from './components/edit-stuff/edit-posts/EditYourPost';
 import PostEdit from './components/edit-stuff/edit-posts/PostEdit';
 import AccountEditForm from './components/auth/AccountEditForm';
 import ViewPost from './components/search/ViewPost';
+import CameraComponent from './components/post/Camera';
 
 const RouterComponent = () => {
     return (
@@ -32,6 +33,7 @@ const RouterComponent = () => {
                     <Scene key="postEdit" component={PostEdit} title="Edit Post" />
                     <Scene key="editPosts" component={EditYourPost} title="Your Posts" rightTitle="Edit Account" onRight={() => Actions.accountEdit()} />
                     <Scene key="accountEdit" component={AccountEditForm} title="Edit Account"/>
+                    <Scene key="takePicture" component={CameraComponent} title="Take a picture!"/>
                 </Scene>
             </Scene>
         </Router>
