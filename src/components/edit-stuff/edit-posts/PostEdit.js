@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
+import {ScrollView} from 'react-native';
 import { connect } from 'react-redux';
 import PostForm from '../../post/PostForm';
 import { bookUpdate, bookSave, bookDelete } from '../../../actions';
@@ -34,6 +35,7 @@ class PostEdit extends Component{
 
     render () {
         return (
+            <ScrollView style={{flex:1}}>
             <Card>
                 <PostForm {...this.props} />
                 <CardSection>
@@ -53,6 +55,7 @@ class PostEdit extends Component{
                     Are you sure you want to delete this post?
                 </Confirm>
             </Card>
+            </ScrollView>
         )
     }
 }

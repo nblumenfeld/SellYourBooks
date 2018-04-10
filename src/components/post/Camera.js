@@ -1,21 +1,29 @@
 import React, { Component } from 'react';
 import Camera from 'react-native-camera';
+import { connect } from 'react-redux';
 import { View, Text } from 'react-native';
+import { Actions } from 'react-native-router-flux';
+import { bookUpdate } from '../../actions';
+
 
 class CameraComponent extends Component{
-    takePicture() {
-        const options = {}
-        this.camera.capture({metadata: options}).then((data) => {
-            console.log('image captured')
-            console.log(data)
-        }).catch((error) => {
-          console.log(error)
+
+    takePicture(){
+        this.camera.capture()
+        //data id of {path:, mediaUri:}
+        .then((data) => {
+            // rnfbURI = RNFetchBlob.wrap(data.mediaUri);
+            // console.log(rnfbURI);
+            this.props.bookUpdate({prop:'picture', value:data.mediaUri})
+            console.log(this.props.picture);
+            Actions.pop();
         })
-      }
+        .catch(err => console.error(err));
+    }
 
     render() {
         return (
-            <View style={styles.container}>
+            <View style={styles.container}> 
                 <Camera
                     style={styles.view}
                     ref={ref => this.camera = ref}
@@ -53,4 +61,10 @@ const styles ={
     }
   };
 
-export default CameraComponent;
+  const mapStateToProps = (state) => {
+      const { picture } = state.post;
+
+      return { picture };
+  }
+
+export default connect(mapStateToProps,{bookUpdate})(CameraComponent);

@@ -6,6 +6,7 @@ import {
     BOOK_SAVE_SUCCESS,
     BOOK_DELETE_SUCCESS
 } from './types';
+import { uploadImage } from './imageActions';
 
 export const bookUpdate = ( { prop, value } ) => {
     return {
@@ -16,6 +17,8 @@ export const bookUpdate = ( { prop, value } ) => {
 
 export const bookCreate = ( { title, author, edition, courseId, condition, price, picture, notes }) => {
     const { currentUser } = firebase.auth();
+    //only upload post after picture has been uploaded
+    uploadImage(picture, 'image/jpeg').then(data => picture=data);
     return (dispatch) => {
     firebase.database().ref(`/users/${currentUser.uid}/posts`)
     .push({ title, author, edition, courseId, condition, price, picture, notes })
@@ -33,8 +36,6 @@ export const bookCreate = ( { title, author, edition, courseId, condition, price
             });
         });
     };
-    
-    //copy the newly created post to a post section in school (after user is connected to school) for faster searching
 };
 
 export const bookSave = ( { title, author, edition, courseId, condition, price, picture, notes, communalPostId, refId } ) => {

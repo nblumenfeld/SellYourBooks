@@ -94,11 +94,13 @@ class BookList extends Component {
                         </CardSection>
                     </View>
                 </Modal>
+                <View>
                 <ListView
                     enableEmptySections
                     dataSource={this.dataSource}
                     renderRow={this.renderRow}
                 />
+                </View>
             </View>
             
         );

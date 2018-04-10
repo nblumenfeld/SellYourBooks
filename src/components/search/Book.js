@@ -17,7 +17,7 @@ class Book extends Component {
             <CardSection>
                 <Image 
                 style={styles.thumbnailStyle}
-                source={require('../../assets/book.png')}
+                source={{uri:this.props.picture}}
                 />
             </CardSection>
             <CardSection>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Picker } from 'react-native';
+import { View, Text, Picker, Image } from 'react-native';
 import { connect } from 'react-redux';
 import { bookUpdate } from '../../actions';
 import CameraComponent from './Camera';
@@ -9,10 +9,13 @@ import { Actions } from 'react-native-router-flux';
 class PostForm extends Component {
 
     maybeRenderImage() {
+        console.log(this.props.picture)
         if(this.props.picture != ''){
             return(
                 <CardSection>
-                    <Image src={this.props.picture}/>
+                    <Image
+                    style={styles.thumbnailStyle} 
+                    source={{uri:this.props.picture}}/>
                 </CardSection>
             )
         }
@@ -107,6 +110,10 @@ const styles = {
         fontSize: 18,
         paddingLeft: 20,
         flex: 1
+    },
+    thumbnailStyle:{
+        width:100,
+        height:100
     }
 }
 

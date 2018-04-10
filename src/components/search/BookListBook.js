@@ -48,7 +48,7 @@ class BookListBook extends Component {
             <CardSection>
                 <Image 
                 style={styles.thumbnailStyle}
-                source={require('../../assets/book.png')}
+                source={{uri:this.props.picture}}
                 />
             </CardSection>
             <CardSection>
@@ -73,8 +73,7 @@ class BookListBook extends Component {
 const styles = {
     thumbnailStyle:{
         width:100,
-        height:100,
-        justfiyContent:'center'
+        height:100
     }
 }
 export default BookListBook;
