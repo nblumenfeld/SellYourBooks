@@ -17,7 +17,7 @@ class Book extends Component {
             <CardSection>
                 <Image 
                 style={styles.thumbnailStyle}
-                source={{uri:this.props.picture}}
+                source={{uri:this.props.book.picture}}
                 />
             </CardSection>
             <CardSection>

@@ -43,12 +43,13 @@ class BookListBook extends Component {
 
     render() {
         const { title } = this.props.book;
+        console.log(this.props.book.picture);
         return (
             <Card >
             <CardSection>
                 <Image 
                 style={styles.thumbnailStyle}
-                source={{uri:this.props.picture}}
+                source={{uri:this.props.book.picture}}
                 />
             </CardSection>
             <CardSection>
