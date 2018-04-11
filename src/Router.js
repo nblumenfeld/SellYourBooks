@@ -4,11 +4,23 @@ import RegisterForm from './components/auth/RegisterForm';
 import LoginForm from './components/auth/LoginForm';
 import BookList from './components/search/BookList';
 import Post from './components/post/Post';
-import EditYourPost from './components/edit-stuff/edit-posts/EditYourPost';
-import PostEdit from './components/edit-stuff/edit-posts/PostEdit';
+import EditYourPost from './components/edit-posts/EditYourPost';
+import PostEdit from './components/edit-posts/PostEdit';
 import AccountEditForm from './components/auth/AccountEditForm';
 import ViewPost from './components/search/ViewPost';
 import CameraComponent from './components/post/Camera';
+import {bookInitialize} from './actions';
+
+const book = {
+    title:'',
+    author:'',
+    edition:'',
+    courseId:'',
+    condition:'',
+    price:'',
+    picture:'',
+    notes:''
+};
 
 const RouterComponent = () => {
     return (
@@ -24,7 +36,7 @@ const RouterComponent = () => {
                     leftTitle="Your Posts"
                     rightTitle="Post"
                     onLeft={() => Actions.editPosts()}
-                    onRight={() =>  Actions.post()}
+                    onRight={() =>  Actions.post(book)}
                     key="bookList" 
                     component={BookList} 
                     title="Search for a book"
@@ -40,4 +52,4 @@ const RouterComponent = () => {
     );
 };
 
-export default RouterComponent
+export default RouterComponent;

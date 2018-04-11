@@ -2,8 +2,8 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import { ListView } from 'react-native';
-import { postsFetch } from '../../../actions';
-import Book from '../../search/Book';
+import { postsFetch } from '../../actions';
+import Book from '../search/Book';
 
 class EditYourPost extends Component {
     componentWillMount() {
@@ -25,7 +25,6 @@ class EditYourPost extends Component {
     }
 
     renderRow(book){
-        console.log(book);
         return <Book book={book}/>
     }
     render() {

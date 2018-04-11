@@ -9,7 +9,6 @@ import { Actions } from 'react-native-router-flux';
 class PostForm extends Component {
 
     maybeRenderImage() {
-        console.log(this.props.picture)
         if(this.props.picture != ''){
             return(
                 <CardSection>

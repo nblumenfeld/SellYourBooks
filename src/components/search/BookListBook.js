@@ -31,7 +31,6 @@ class BookListBook extends Component {
     }
 
     onBookPress() {
-        console.log('book pressed');
         this.setState({showModal:true});
     }
 
@@ -43,7 +42,6 @@ class BookListBook extends Component {
 
     render() {
         const { title } = this.props.book;
-        console.log(this.props.book.picture);
         return (
             <Card >
             <CardSection>

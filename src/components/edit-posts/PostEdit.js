@@ -2,9 +2,9 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import {ScrollView} from 'react-native';
 import { connect } from 'react-redux';
-import PostForm from '../../post/PostForm';
-import { bookUpdate, bookSave, bookDelete } from '../../../actions';
-import { Card, CardSection, Button, Confirm } from '../../common';
+import PostForm from '../post/PostForm';
+import { bookUpdate, bookSave, bookDelete } from '../../actions';
+import { Card, CardSection, Button, Confirm } from '../common';
 
 class PostEdit extends Component{
 
@@ -18,8 +18,6 @@ class PostEdit extends Component{
 
     onButtonPress(){
         const {title, author, edition, courseId, condition, price, picture, notes } = this.props;
-
-        console.log(this.props.book.comRefId);
 
         this.props.bookSave({ title, author, edition, courseId, condition, price, picture, notes, communalPostId:this.props.book.comRefId, refId: this.props.book.uid });
     }

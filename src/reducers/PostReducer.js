@@ -1,4 +1,5 @@
 import {
+    BOOK_INITIALIZE,
     BOOK_UPDATE,
     BOOK_CREATE,
     BOOK_SAVE_SUCCESS,
@@ -19,6 +20,8 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action ) => {
     switch(action.type) {
+        case BOOK_INITIALIZE:
+            return INITIAL_STATE;
         case BOOK_UPDATE:
             return { ...state, [action.payload.prop]: action.payload.value };
         case BOOK_CREATE:

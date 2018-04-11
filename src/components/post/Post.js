@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 import { ScrollView } from 'react-native';
 import { connect } from 'react-redux';
-import { bookUpdate, bookCreate } from '../../actions';
+import { bookInitialize, bookUpdate, bookCreate } from '../../actions';
 import { Card, CardSection, Button} from '../common';
 import PostForm from './PostForm';
 
 class Post extends Component {
+
+    componentWillMount(){
+        console.log('component will  mount')
+        this.props.bookInitialize();
+    }
 
     onButtonPress() {
         const { title, author, edition, courseId, condition, price, picture, notes } = this.props;
@@ -36,5 +41,5 @@ const mapStateToProps = (state) => {
 
 };
 
-export default connect(mapStateToProps,{ bookUpdate, bookCreate })(Post);
+export default connect(mapStateToProps,{ bookUpdate, bookCreate, bookInitialize })(Post);
 

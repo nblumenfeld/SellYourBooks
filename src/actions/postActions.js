@@ -1,12 +1,20 @@
 import firebase from 'firebase';
 import { Actions } from 'react-native-router-flux';
 import {
+    BOOK_INITIALIZE,
     BOOK_UPDATE,
     BOOK_CREATE,
     BOOK_SAVE_SUCCESS,
     BOOK_DELETE_SUCCESS
 } from './types';
 import { uploadImage } from './imageActions';
+
+export const bookInitialize = () => {
+    console.log('bbook init') 
+    return { 
+        type: BOOK_INITIALIZE
+     };
+ };
 
 export const bookUpdate = ({ prop, value }) => {
     return {

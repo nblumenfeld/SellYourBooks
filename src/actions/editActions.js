@@ -39,9 +39,7 @@ export const updateUser = ( { prop, value } ) => {
 
 export const userSave = ( { email,password, firstName, lastName } ) => {
     const { currentUser } = firebase.auth();
-    console.log('in userSave');
     return (dispatch) => {
-        console.log('about to update email');
         currentUser.updateEmail(email)
         .then(() => {
             firebase.database().ref(`/users/${currentUser.uid}`)

@@ -23,7 +23,7 @@ import {
 } from '../common';
 
 class LoginForm extends Component{
-    
+     
     onEmailChange(text){
         this.props.emailChanged(text);
     }
