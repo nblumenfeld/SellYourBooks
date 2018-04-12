@@ -25,21 +25,11 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
-	<dict>
-		<key>NSExceptionDomains</key>
-		<dict>
-			<key>localhost</key>
-			<dict>
-				<key>NSExceptionAllowsInsecureHTTPLoads</key>
-				<true/>
-			</dict>
-		</dict>
-	</dict>
+	<dict/>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
 	<key>NSCameraUsageDescription</key>
 	<string>We are using the camera. Deal with it.</string>
-	<!-- Include this only if you are planning to use the camera roll -->
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>We use the camera roll. Plz say yes.</string>
 	<key>NSPhotoLibraryUsageDescription</key>

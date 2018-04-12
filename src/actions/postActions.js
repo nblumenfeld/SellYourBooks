@@ -5,7 +5,8 @@ import {
     BOOK_UPDATE,
     BOOK_CREATE,
     BOOK_SAVE_SUCCESS,
-    BOOK_DELETE_SUCCESS
+    BOOK_DELETE_SUCCESS,
+    CREATING_BOOK
 } from './types';
 import { uploadImage } from './imageActions';
 
@@ -26,9 +27,10 @@ export const bookUpdate = ({ prop, value }) => {
 export const bookCreate = ({ title, author, edition, courseId, condition, price, picture, notes }) => {
     const { currentUser } = firebase.auth();
     const email = currentUser.email;
-    if(picture){
-        //only upload post after picture has been uploaded
-        return (dispatch) => {
+    return(dispatch) =>{
+        dispatch({type:CREATING_BOOK})
+        if(picture){
+            //only upload post after picture has been uploaded
             uploadImage(picture, 'image/jpeg').then(data =>{ 
                 picture = data
                 firebase.database().ref(`/users/${currentUser.uid}/posts`)
@@ -47,10 +49,8 @@ export const bookCreate = ({ title, author, edition, courseId, condition, price,
                     });
                 });
             });
-        };
-    }
-    else{
-        return (dispatch) => {
+        }
+        else{
             picture='default';
             firebase.database().ref(`/users/${currentUser.uid}/posts`)
             .push({ title, author, edition, courseId, condition, price, picture, notes, email })
@@ -70,7 +70,7 @@ export const bookCreate = ({ title, author, edition, courseId, condition, price,
         };
     }
 };
-
+    
 export const bookSave = ({ title, author, edition, courseId, condition, price, picture, notes, communalPostId, refId }) => {
     const { currentUser } = firebase.auth();
     return (dispatch) => {

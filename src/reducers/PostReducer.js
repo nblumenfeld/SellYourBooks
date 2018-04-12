@@ -4,7 +4,8 @@ import {
     BOOK_CREATE,
     BOOK_SAVE_SUCCESS,
     BOOKS_FETCH_SUCCESS,
-    BOOK_DELETE_SUCCESS
+    BOOK_DELETE_SUCCESS,
+    CREATING_BOOK
 } from '../actions/types';
 
 const INITIAL_STATE = {
@@ -16,11 +17,14 @@ const INITIAL_STATE = {
     price:'',
     picture:'',
     notes:'',
-    email:''
+    email:'',
+    loading:false
 };
 
 export default (state = INITIAL_STATE, action ) => {
     switch(action.type) {
+        case CREATING_BOOK:
+            return {...state, loading:true}
         case BOOK_INITIALIZE:
             return INITIAL_STATE;
         case BOOK_UPDATE:

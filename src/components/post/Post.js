@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 import { bookInitialize, bookUpdate, bookCreate } from '../../actions';
-import { Card, CardSection, Button} from '../common';
+import { Card, CardSection, Button, Spinner} from '../common';
 import PostForm from './PostForm';
 
 class Post extends Component {
@@ -18,16 +18,31 @@ class Post extends Component {
         this.props.bookCreate({ title, author, edition, courseId, condition: condition || 'E' , price, picture, notes });
     }
 
+    renderButton() {
+        if(this.props.loading) {
+            return(
+                <CardSection>
+                    <Spinner size="large" />
+                </CardSection>
+            ) 
+        }
+
+        return (
+            <CardSection>
+                <Button 
+                onPress={this.onButtonPress.bind(this)} >
+                    Post!
+                </Button>
+            </CardSection>
+        );
+    }
+
     render () {
         return (
             <ScrollView style={{flex:1}}>
             <Card>
                 <PostForm {...this.props} />
-                <CardSection>
-                    <Button onPress={this.onButtonPress.bind(this)}>
-                        Post!
-                    </Button>
-                </CardSection>
+                {this.renderButton()}
             </Card>
             </ScrollView>
         )
@@ -35,9 +50,9 @@ class Post extends Component {
 }
 
 const mapStateToProps = (state) => {
-    const { title, author, edition,courseId, condition, price, picture, notes } = state.post;
+    const { title, author, edition,courseId, condition, price, picture, notes, loading } = state.post;
 
-    return { title, author, edition,courseId, condition, price, picture, notes };
+    return { title, author, edition,courseId, condition, price, picture, notes, loading };
 
 };
 
