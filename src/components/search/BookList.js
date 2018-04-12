@@ -1,29 +1,19 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { ListView, View, Text, Modal, Picker } from 'react-native';
+import { FlatList, View, Text, Modal, Picker } from 'react-native';
 import { booksFetch } from '../../actions';
 import BookListBook from './BookListBook';
 import ChooseSearch from './ChooseSearch';
 import { Input, Button, CardSection } from '../common';
 
 class BookList extends Component {
-    state = { type: 'title', showModal: false }
+    state = { search:'', type: 'title', showModal: false }
     componentWillMount() {
-        this.props.booksFetch({ search: this.state.search });
-        this.createDataSource(this.props);
+        this.props.booksFetch({ search:'', type:'title'});
     }
 
     componentWillReceiveProps(nextProps) {
-        this.createDataSource(nextProps);
-    }
-
-    createDataSource({ search }) {
-        const ds = new ListView.DataSource({
-            rowHasChanged: (r1, r2) => r1 != r2
-        });
-
-        this.dataSource = ds.cloneWithRows(search);
     }
 
     renderRow(book) {
@@ -56,23 +46,27 @@ class BookList extends Component {
 
     render() {
         return (
-            <View>
-                <View>
-                    <CardSection>
-                        <Input
-                            style={{ flex: 2.5 }}
-                            placeholder="search"
-                            value={this.state.search}
-                            onChangeText={search => {
-                                if (search != undefined)
-                                    this.props.booksFetch({ search: search, type: this.state.type });
-                                else
-                                    this.props.booksFetch({ search: '', type: this.state.type });
-                            }}
-                        />
-                        <Button onPress={this.pickSearchType.bind(this)}>{this.renderType()}</Button>
-                    </CardSection>
-                </View>
+            <View style={{flex:1}}>
+                <CardSection>
+                    <Input
+                        style={{ flex: 2.5 }}
+                        placeholder="search"
+                        value={this.state.search}
+                        onChangeText={search => {
+                            if (search != undefined)
+                                this.props.booksFetch({ search: search, type: this.state.type });
+                            else
+                                this.props.booksFetch({ search: '', type: this.state.type });
+                        }}
+                    />
+                    <Button onPress={this.pickSearchType.bind(this)}>{this.renderType()}</Button>
+                </CardSection>
+                <FlatList 
+                    style={{flex:1}}
+                    data={this.props.searchResults}
+                    renderItem={({item}) => <BookListBook book={item}
+                    />}
+                />
                 <Modal
                     visible={this.state.showModal}
                     transparent
@@ -96,11 +90,6 @@ class BookList extends Component {
                         </CardSection>
                     </View>
                 </Modal>
-                <ListView
-                    enableEmptySections
-                    dataSource={this.dataSource}
-                    renderRow={this.renderRow}
-                />
             </View>
 
         );
@@ -127,11 +116,13 @@ const styles = {
 }
 
 const mapStatToProps = state => {
-    const search = _.map(state.search, (val, uid) => {
+    const searchResults = _.map(state.searchRed, (val, uid) => {
         return { ...val, uid };
     });
 
-    return { search };
+    console.log(searchResults);
+
+    return { searchResults };
 };
 
 export default connect(mapStatToProps, { booksFetch })(BookList);

@@ -15,7 +15,8 @@ const INITIAL_STATE = {
     condition:'',
     price:'',
     picture:'',
-    notes:''
+    notes:'',
+    email:''
 };
 
 export default (state = INITIAL_STATE, action ) => {

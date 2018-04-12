@@ -25,27 +25,50 @@ export const bookUpdate = ({ prop, value }) => {
 
 export const bookCreate = ({ title, author, edition, courseId, condition, price, picture, notes }) => {
     const { currentUser } = firebase.auth();
-    //only upload post after picture has been uploaded
-    return (dispatch) => {
-        uploadImage(picture, 'image/jpeg').then(data =>{ 
-            picture = data
+    const email = currentUser.email;
+    if(picture){
+        //only upload post after picture has been uploaded
+        return (dispatch) => {
+            uploadImage(picture, 'image/jpeg').then(data =>{ 
+                picture = data
+                firebase.database().ref(`/users/${currentUser.uid}/posts`)
+                .push({ title, author, edition, courseId, condition, price, picture, notes, email })
+                .then((userPostReference) => {
+                    firebase.database().ref(`/users/${currentUser.uid}/school`).on('value', snapshot => {
+                        let userSchool = snapshot.val();
+                        firebase.database().ref(`/Schools/${userSchool}/Posts`)
+                        .push({ refId: userPostReference.key, title, author, edition, courseId, condition, price, picture, notes, email })
+                        .then((communalPostReference) => {
+                            firebase.database().ref(`/users/${currentUser.uid}/posts/${userPostReference.key}`)
+                            .set({ comRefId: communalPostReference.key, title, author, edition, courseId, condition, price, picture, notes, email })
+                            dispatch({ type: BOOK_CREATE })
+                            Actions.pop();
+                        });
+                    });
+                });
+            });
+        };
+    }
+    else{
+        return (dispatch) => {
+            picture='default';
             firebase.database().ref(`/users/${currentUser.uid}/posts`)
-            .push({ title, author, edition, courseId, condition, price, picture, notes })
+            .push({ title, author, edition, courseId, condition, price, picture, notes, email })
             .then((userPostReference) => {
                 firebase.database().ref(`/users/${currentUser.uid}/school`).on('value', snapshot => {
                     let userSchool = snapshot.val();
                     firebase.database().ref(`/Schools/${userSchool}/Posts`)
-                    .push({ refId: userPostReference.key, title, author, edition, courseId, condition, price, picture, notes })
+                    .push({ refId: userPostReference.key, title, author, edition, courseId, condition, price, picture, notes, email })
                     .then((communalPostReference) => {
                         firebase.database().ref(`/users/${currentUser.uid}/posts/${userPostReference.key}`)
-                        .set({ comRefId: communalPostReference.key, title, author, edition, courseId, condition, price, picture, notes })
+                        .set({ comRefId: communalPostReference.key, title, author, edition, courseId, condition, price, picture, notes, email })
                         dispatch({ type: BOOK_CREATE })
                         Actions.pop();
                     });
                 });
             });
-        });
-    };
+        };
+    }
 };
 
 export const bookSave = ({ title, author, edition, courseId, condition, price, picture, notes, communalPostId, refId }) => {

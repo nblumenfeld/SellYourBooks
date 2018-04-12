@@ -10,7 +10,7 @@ import AccountReducer from './AccountReducer';
 export default combineReducers({
     auth: AuthReducer,
     post: PostReducer,
-    search: SearchReducer,
+    searchRed: SearchReducer,
     register: RegistrationReducer,
     edit: EditReducer,
     account: AccountReducer

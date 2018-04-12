@@ -1,39 +1,26 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import { ListView } from 'react-native';
+import { FlatList } from 'react-native';
 import { postsFetch } from '../../actions';
 import Book from '../search/Book';
 
 class EditYourPost extends Component {
     componentWillMount() {
         this.props.postsFetch();
-        this.createDataSource(this.props);
         
     }
 
     componentWillReceiveProps(nextProps) {
-        this.createDataSource(nextProps);
-    }
-
-    createDataSource({ edit }) {
-        const ds = new ListView.DataSource({
-            rowHasChanged: (r1,r2) => r1 != r2
-        });
-
-        this.dataSource = ds.cloneWithRows(edit);
-    }
-
-    renderRow(book){
-        return <Book book={book}/>
     }
     render() {
         return (
-           <ListView
-                enableEmptySections
-                dataSource={this.dataSource}
-                renderRow={this.renderRow}
-            />
+            <FlatList 
+            data={this.props.edit}
+            renderItem={({item}) => <Book book={item}
+            
+            />}
+        />
         );
     }
 };

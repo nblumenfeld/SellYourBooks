@@ -1,9 +1,10 @@
 import React from 'React';
-import { Text, View, Modal } from 'react-native';
+import { Text, View, Modal, Image } from 'react-native';
 import { CardSection,Button } from '../common'; 
 
-const ViewPost = ({ book, visible, onDismiss, condition }) => {
-    const {title, author, edition, price, picture, notes} = book;
+const ViewPost = ({ book, visible, onDismiss, condition, onContact, picture }) => {
+    const {title, author, edition, price, notes, email} = book;
+    
     return (
         <Modal
         visible={visible}
@@ -12,6 +13,11 @@ const ViewPost = ({ book, visible, onDismiss, condition }) => {
         onRequestClose={()=>{}}
         >
         <View style={styles.containerStyle}>
+
+            <CardSection style={styles.cardSectionStyle}>
+                {picture}
+            </CardSection>
+
             <CardSection>
                 <Text style={styles.textStyle}>{title}</Text>
             </CardSection>
@@ -37,6 +43,12 @@ const ViewPost = ({ book, visible, onDismiss, condition }) => {
             </CardSection>
 
             <CardSection>
+                <Button onPress={onContact}>
+                    Contact Seller!
+                </Button>
+            </CardSection>
+
+            <CardSection>
                 <Button onPress={onDismiss}>Dismiss</Button>
             </CardSection>
         </View>
@@ -57,6 +69,14 @@ styles={
         textAlign:'center',
         lineHeight:40
     },
+    thumbnailStyle:{
+        width:150,
+        height:150
+    },
+    cardSectionStyle:{
+        flex:1,
+        justifyContent:'center'
+    }
 }
 
 export { ViewPost };

@@ -9,16 +9,31 @@ class Book extends Component {
     onBookPress() {
         Actions.postEdit({ book:this.props.book });
     }
+    renderBook(){
+        if(this.props.book.picture == 'default'){
+            return (
+            <Image 
+            style={styles.thumbnailStyle}
+            source={require('../../assets/book.png')}
+            />
+            )
+        }
+        else{
+            return(
+            <Image 
+            style={styles.thumbnailStyle}
+            source={{uri:this.props.book.picture}}
+            />
+            )
+        }
+    }
 
     render() {
         const { title } = this.props.book;
         return (
             <Card >
-            <CardSection>
-                <Image 
-                style={styles.thumbnailStyle}
-                source={{uri:this.props.book.picture}}
-                />
+            <CardSection style={styles.cardSectionStyle}>
+               {this.renderBook()}
             </CardSection>
             <CardSection>
                 <Text>
@@ -35,8 +50,12 @@ class Book extends Component {
 
 const styles = {
     thumbnailStyle:{
-        width:100,
-        height:100
+        width:150,
+        height:150
+    },
+    cardSectionStyle:{
+        flex:1,
+        justifyContent:'center'
     }
 }
 export default Book;
