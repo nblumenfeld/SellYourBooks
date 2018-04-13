@@ -41,7 +41,7 @@ class Book extends Component {
                 </Text>
             </CardSection>
             <CardSection>
-               <Button onPress={this.onBookPress.bind(this)}>View Book</Button>
+               <Button onPress={this.onBookPress.bind(this)}>Edit Book</Button>
             </CardSection>
         </Card>
     );

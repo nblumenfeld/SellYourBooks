@@ -20,11 +20,6 @@ class BookList extends Component {
         return <BookListBook book={book} />
     }
 
-    onSearch() {
-        this.props.booksFetch({ search: this.state.search, type: this.state.type });
-        this.createDataSource(this.props);
-    }
-
     pickSearchType() {
         this.setState({ showModal: true });
     }
@@ -53,10 +48,11 @@ class BookList extends Component {
                         placeholder="search"
                         value={this.state.search}
                         onChangeText={search => {
-                            if (search != undefined)
+                            this.setState({search});
+                            if (search != undefined){
+                                console.log('Searching for' + this.state.search);
                                 this.props.booksFetch({ search: search, type: this.state.type });
-                            else
-                                this.props.booksFetch({ search: '', type: this.state.type });
+                            }
                         }}
                     />
                     <Button onPress={this.pickSearchType.bind(this)}>{this.renderType()}</Button>
@@ -119,7 +115,7 @@ const mapStatToProps = state => {
     const searchResults = _.map(state.searchRed, (val, uid) => {
         return { ...val, uid };
     });
-
+    console.log('mapStateToProps');
     console.log(searchResults);
 
     return { searchResults };

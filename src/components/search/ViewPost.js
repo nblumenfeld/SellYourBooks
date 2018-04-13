@@ -7,12 +7,14 @@ const ViewPost = ({ book, visible, onDismiss, condition, onContact, picture }) =
     
     return (
         <Modal
+        style={{flex:1}}
         visible={visible}
         transparent
         animationType="slide"
         onRequestClose={()=>{}}
         >
         <View style={styles.containerStyle}>
+        
 
             <CardSection style={styles.cardSectionStyle}>
                 {picture}
@@ -60,8 +62,7 @@ styles={
     containerStyle:{
         backgroundColor:'rgba(0, 0, 0, 0.75)',
         position:'relative',
-        flex:1,
-        justifyContent:'center'
+        flex:1
     },
     textStyle:{
         flex:1,
