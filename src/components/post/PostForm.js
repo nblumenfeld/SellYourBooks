@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Picker, Image } from 'react-native';
+import { KeyboardAvoidingView, Text, Picker, Image } from 'react-native';
 import { connect } from 'react-redux';
 import { bookUpdate } from '../../actions';
 import CameraComponent from './Camera';
@@ -22,7 +22,9 @@ class PostForm extends Component {
 
     render() {
         return (
-            <View>
+            <KeyboardAvoidingView
+            behavior="padding"
+            >
                 <CardSection>
                     <Input
                         label="Title"
@@ -75,7 +77,7 @@ class PostForm extends Component {
                     >
                         <Picker.Item label="Excellent" value="E" />
                         <Picker.Item label="Good" value="G" />
-                        <Picker.Item label="OK" value="O" />
+                        <Picker.Item label="Okay" value="O" />
                         <Picker.Item label="Poor" value="P" />
                     </Picker>
                 </CardSection>
@@ -97,7 +99,7 @@ class PostForm extends Component {
                         onChangeText={value => this.props.bookUpdate({ prop: 'notes', value })}
                     />
                 </CardSection>
-            </View>
+            </KeyboardAvoidingView>
 
         )
     }
