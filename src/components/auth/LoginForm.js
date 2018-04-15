@@ -72,7 +72,7 @@ class LoginForm extends Component{
         return(
             <View style={{flex:1}}> 
             <View style={{justifyContent:'center', alignItems:'center'}}>
-            <Image source={require('../../images/Logo.jpg')} style={{height:200, width:200}}/>
+            <Image source={{uri:'https://firebasestorage.googleapis.com/v0/b/senior-project-93b55.appspot.com/o/images%2FLogo.jpg?alt=media&token=a280a5e8-8d62-4281-9eaf-73ab1ba325a1'}} style={{height:200, width:200}}/>
             </View>
             <Card>
                 <CardSection>
