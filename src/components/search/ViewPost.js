@@ -1,47 +1,49 @@
 import React from 'React';
-import { Text, View, Modal, Image } from 'react-native';
+import { Text, ScrollView, Modal, Image } from 'react-native';
 import { CardSection,Button } from '../common'; 
 
 const ViewPost = ({ book, visible, onDismiss, condition, onContact, picture }) => {
-    const {title, author, edition, price, notes, email} = book;
+    const {title, author, edition, price, notes, email, courseId} = book;
     
     return (
         <Modal
-        style={{flex:1}}
         visible={visible}
         transparent
         animationType="slide"
         onRequestClose={()=>{}}
         >
-        <View style={styles.containerStyle}>
+        <ScrollView style={styles.containerStyle}>
         
-
             <CardSection style={styles.cardSectionStyle}>
                 {picture}
             </CardSection>
 
             <CardSection>
-                <Text style={styles.textStyle}>{title}</Text>
+                <Text style={styles.textStyle}>Title: {title}</Text>
             </CardSection>
 
             <CardSection>
-                <Text style={styles.textStyle}>{author}</Text>
+                <Text style={styles.textStyle}>Author: {author}</Text>
             </CardSection>
 
             <CardSection>
-                <Text style={styles.textStyle}>{edition}</Text>
+                <Text style={styles.textStyle}>Edition: {edition}</Text>
             </CardSection>
             
             <CardSection>
-            <Text style={styles.textStyle}>{condition}</Text>
-            </CardSection>
-            
-            <CardSection>
-                <Text style={styles.textStyle}>{price}</Text>
+            <Text style={styles.textStyle}>Condition: {condition}</Text>
             </CardSection>
 
             <CardSection>
-                <Text style={styles.textStyle}>{notes}</Text>
+            <Text style={styles.textStyle}>Course ID: {courseId}</Text>
+            </CardSection>
+            
+            <CardSection>
+                <Text style={styles.textStyle}>Price: ${price}</Text>
+            </CardSection>
+
+            <CardSection>
+                <Text style={styles.textStyle}>Notes: {notes}</Text>
             </CardSection>
 
             <CardSection>
@@ -53,12 +55,12 @@ const ViewPost = ({ book, visible, onDismiss, condition, onContact, picture }) =
             <CardSection>
                 <Button onPress={onDismiss}>Dismiss</Button>
             </CardSection>
-        </View>
+        </ScrollView>
     </Modal>
     );
-}
+};
 
-styles={
+const styles={
     containerStyle:{
         backgroundColor:'rgba(0, 0, 0, 0.75)',
         position:'relative',
@@ -66,17 +68,16 @@ styles={
     },
     textStyle:{
         flex:1,
-        fontSize:18,
+        fontSize:15,
         textAlign:'center',
-        lineHeight:40
-    },
-    thumbnailStyle:{
-        width:150,
-        height:150
+        lineHeight:40,
+        color:'#2E86AB',
+        fontWeight:'bold'
     },
     cardSectionStyle:{
         flex:1,
-        justifyContent:'center'
+        justifyContent:'center',
+        alignItems:'center'
     }
 }
 

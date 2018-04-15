@@ -10,12 +10,8 @@ class CameraComponent extends Component{
 
     takePicture(){
         this.camera.capture()
-        //data id of {path:, mediaUri:}
         .then((data) => {
-            // rnfbURI = RNFetchBlob.wrap(data.mediaUri);
-            // console.log(rnfbURI);
-            this.props.bookUpdate({prop:'picture', value:data.mediaUri})
-            console.log(this.props.picture);
+            this.props.bookUpdate({prop:'picture', value:data.mediaUri});
             Actions.pop();
         })
         .catch(err => console.error(err));
@@ -53,7 +49,7 @@ const styles ={
     },
     capture: {
       flex: 0,
-      backgroundColor: 'steelblue',
+      backgroundColor: '#2E86AB',
       borderRadius: 10,
       color: 'white',
       padding: 15,

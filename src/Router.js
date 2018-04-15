@@ -24,28 +24,34 @@ const book = {
 
 const RouterComponent = () => {
     return (
-        <Router>
+        <Router cardStyle={{backgroundColor:'white'}} >
             {/* This is the parent scene, needed to make the rest work*/}
-            <Scene key="root" hideNavBar>
-                <Scene key="auth" >
-                    <Scene key="login" component={LoginForm} title="Welcome to SYB!" initial/>
-                    <Scene key="register" component={RegisterForm} title="Registration"/>
+            <Scene key="root" hideNavBar >
+                <Scene key="auth" navigationBarStyle={{backgroundColor:'white'}} titleStyle={{color:'#2E86AB'}}>
+                    <Scene key="login" component={LoginForm} title="Welcome to SYB!" initial titleStyle={{color:'#2E86AB'}}/>
+                    <Scene key="register" component={RegisterForm} title="Registration" titleStyle={{color:'#2E86AB'}}/>
                 </Scene>
-                <Scene key="main" >
+                <Scene key="main" navigationBarStyle={{backgroundColor:'white'}} titleStyle={{color:'#2E86AB'}}>
                     <Scene 
-                    leftTitle="Your Posts"
                     rightTitle="Post"
-                    onLeft={() => Actions.editPosts()}
+                    rightButtonTextStyle={{color:'#2E86AB'}}
                     onRight={() =>  Actions.post(book)}
                     key="bookList" 
                     component={BookList} 
                     title="Search for a book"
-                    initial />
-                    <Scene key="post" component={Post} title="Post a book!" />
-                    <Scene key="postEdit" component={PostEdit} title="Edit Post" />
-                    <Scene key="editPosts" component={EditYourPost} title="Your Posts" rightTitle="Edit Account" onRight={() => Actions.accountEdit()} />
-                    <Scene key="accountEdit" component={AccountEditForm} title="Edit Account"/>
-                    <Scene key="takePicture" component={CameraComponent} title="Take a picture!"/>
+                    titleStyle={{color:'#2E86AB'}}
+                    initial  
+                    />
+                    <Scene key="post" component={Post} title="Post a book!"  titleStyle={{color:'#2E86AB'}}/>
+                    <Scene key="takePicture" component={CameraComponent} title="Take a picture!" titleStyle={{color:'#2E86AB'}}/>
+                </Scene>
+                <Scene key="edit" navigationBarStyle={{backgroundColor:'white'}} titleStyle={{color:'#2E86AB'}}>
+                    <Scene key="postEdit" component={PostEdit} title="Edit Post"  titleStyle={{color:'#2E86AB'}}/>
+                    <Scene key="editPosts" component={EditYourPost} title="Your Posts" initial  titleStyle={{color:'#2E86AB'}}/>
+                    <Scene key="takePicture" component={CameraComponent} title="Take a picture!" titleStyle={{color:'#2E86AB'}}/>
+                </Scene>
+                <Scene key="account" navigationBarStyle={{backgroundColor:'white'}}>
+                    <Scene key="accountEdit" component={AccountEditForm} title="Edit Account" initial titleStyle={{color:'#2E86AB'}}/>
                 </Scene>
             </Scene>
         </Router>

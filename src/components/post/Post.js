@@ -8,7 +8,6 @@ import PostForm from './PostForm';
 class Post extends Component {
 
     componentWillMount(){
-        console.log('component will  mount')
         this.props.bookInitialize();
     }
 

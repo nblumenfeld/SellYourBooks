@@ -47,10 +47,10 @@ class BookListBook extends Component {
     renderBook(){
         if(this.props.book.picture == 'default'){
             return (
-            <Image 
-            style={styles.thumbnailStyle}
-            source={require('../../assets/book.png')}
-            />
+                <Image 
+                style={styles.thumbnailStyle}
+                source={{uri:'https://firebasestorage.googleapis.com/v0/b/senior-project-93b55.appspot.com/o/images%2Fbook.png?alt=media&token=18f2958a-4874-46a6-b3e7-dd169b4a0002'}}
+                />
             )
         }
         else{
@@ -65,15 +65,14 @@ class BookListBook extends Component {
 
     render() {
         const { title } = this.props.book;
-        console.log(this.props.book.picture);
         return (
             <Card >
             <CardSection style={styles.cardSectionStyle}>
                 {this.renderBook()}
             </CardSection>
             <CardSection>
-                <Text>
-                    {title}
+                <Text style={{color:'#2E86AB', fontWeight:'bold'}}>
+                    Title: {title}
                 </Text>
             </CardSection>
             <CardSection>
@@ -94,8 +93,8 @@ class BookListBook extends Component {
 
 const styles = {
     thumbnailStyle:{
-        width:150,
-        height:150
+        width:300,
+        height:300
     },
     cardSectionStyle:{
         flex:1,

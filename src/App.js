@@ -16,10 +16,8 @@ import reducers from './reducers';
 import firebase from 'firebase';
 import ReduxThunk from 'redux-thunk';
 import Router from './Router';
-// import Footer from './src/components/common/Footer';
-// import BookList from './src/components/BookList';
-// import Spinner from './src/components/common/Spinner';
-// import Button from './src/components/common/Button';
+import { Actions } from 'react-native-router-flux';
+
 
 
 export default class App extends Component{
@@ -27,7 +25,7 @@ export default class App extends Component{
     super(props);
   }
 
-  // state = { loggedIn:null }
+  state = { loading:true }
 
   componentWillMount() {
     firebase.initializeApp({
@@ -39,47 +37,7 @@ export default class App extends Component{
       messagingSenderId: "965738840992"
     });
 
-    // firebase.auth().onAuthStateChanged( (user) => {
-    //   if(user){
-    //     this.setState({loggedIn:true})
-    //   }
-    //   else{
-    //     this.setState({loggedIn:false})
-    //   }
-    // });
   }
-
-  // renderContent() {
-  //   switch(this.state.loggedIn){
-  //     case true:
-  //       return (
-  //         <View style={{flex:1}}>
-  //           <Header headerText='Search for a Book'>
-  //             <Button onPress={() => firebase.auth().signOut()} style={styles.logoutStyle}>
-  //               Log Out
-  //             </Button> 
-  //           </Header>
-  //           <BookList/>
-  //           <Footer/> 
-  //         </View> 
-  //       );  
-  //     case false:
-  //       return(
-  //         <View style={{flex:1}}>
-  //           <Header headerText='Login Screen'/>
-  //           <LoginForm />
-  //         </View>
-  //       );
-        
-  //     default:
-  //       return(
-  //         <View style={{flex:1}}>
-  //           <Spinner />
-  //         </View>
-  //       );
-
-  //   }
-  // }
 
 
   render() {
@@ -87,7 +45,7 @@ export default class App extends Component{
     return (
       <Provider store={store}>
         <View style={{flex:1}}>
-          <Router/>
+          <Router />
         </View>
       </Provider>
     );

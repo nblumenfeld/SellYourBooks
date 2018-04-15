@@ -5,7 +5,7 @@ import { FlatList, View, Text, Modal, Picker } from 'react-native';
 import { booksFetch } from '../../actions';
 import BookListBook from './BookListBook';
 import ChooseSearch from './ChooseSearch';
-import { Input, Button, CardSection } from '../common';
+import { Input, Button, CardSection, Footer } from '../common';
 
 class BookList extends Component {
     state = { search:'', type: 'title', showModal: false }
@@ -50,7 +50,6 @@ class BookList extends Component {
                         onChangeText={search => {
                             this.setState({search});
                             if (search != undefined){
-                                console.log('Searching for' + this.state.search);
                                 this.props.booksFetch({ search: search, type: this.state.type });
                             }
                         }}
@@ -63,6 +62,8 @@ class BookList extends Component {
                     renderItem={({item}) => <BookListBook book={item}
                     />}
                 />
+                <Footer style={{flex:1}}>
+                </Footer>
                 <Modal
                     visible={this.state.showModal}
                     transparent
@@ -111,16 +112,16 @@ const styles = {
     }
 }
 
-const mapStatToProps = state => {
+const mapStateToProps = state => {
     const searchResults = _.map(state.searchRed, (val, uid) => {
         return { ...val, uid };
     });
-    console.log('mapStateToProps');
-    console.log(searchResults);
+
+    const { user } = state.auth;
 
     return { searchResults };
 };
 
-export default connect(mapStatToProps, { booksFetch })(BookList);
+export default connect(mapStateToProps, { booksFetch })(BookList);
 
 

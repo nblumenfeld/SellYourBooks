@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Text } from 'react-native';
+import { Text, View } from 'react-native';
 import { connect } from 'react-redux';
-import { Button, Card, CardSection, Input } from '../common';
+import { Button, Card, CardSection, Input, Footer } from '../common';
 import { fetchUser, updateUser, userSave, logout, resetPassword } from '../../actions';
 
 
@@ -27,6 +27,8 @@ class AccountEditForm extends Component {
 
     render() {
         return (
+            <View style={{flex:1}}>
+                <View style={{flex:1}}>
                 <Card>
                     <CardSection>
                         <Input
@@ -68,6 +70,9 @@ class AccountEditForm extends Component {
                         <Button onPress={()=> this.props.logout()}>Logout</Button>
                     </CardSection>
                 </Card>
+                </View>
+                <Footer/>
+            </View>
         );
     }
 }

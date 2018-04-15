@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { 
     View,
     TextInput,
@@ -24,17 +24,20 @@ const Input = ({ label, value, onChangeText, autoCorrect, placeholder, secureTex
 const styles = {
     inputStyle:{
         color: '#000',
-        
         paddingRight: 5, 
         paddingLeft: 5,
         fontSize: 18,
         lineHeight: 23,
-        flex: 2
+        flex: 2,
+        color:'#2E86AB',
+        fontWeight:'bold'
     },
     labelStyle: {
         fontSize: 18,
         paddingLeft: 20,
-        flex: 1
+        flex: 1,
+        color:'#2E86AB',
+        fontWeight:'bold'
 
     },
     containerStyle: {

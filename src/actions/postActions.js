@@ -11,7 +11,6 @@ import {
 import { uploadImage } from './imageActions';
 
 export const bookInitialize = () => {
-    console.log('bbook init') 
     return { 
         type: BOOK_INITIALIZE
      };

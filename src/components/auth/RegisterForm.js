@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Picker } from 'react-native';
+import { Picker, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { updateRegistrationForm, registerUser } from '../../actions';
 import { Card, CardSection, Input, Button, Spinner } from '../common';
@@ -72,6 +72,7 @@ class RegisterForm extends Component {
                 </CardSection>
 
                 <CardSection>
+                    <Text style={{flex:1, fontSize:18, paddingLeft:20, color:'#2E86AB', fontWeight:'bold' }}>School</Text>
                     <Picker
                         selectedValue={this.props.school}
                         onValueChange={value => this.props.updateRegistrationForm({prop:'school', value})}

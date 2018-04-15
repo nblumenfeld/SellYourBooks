@@ -25,6 +25,7 @@
 		293E023420800A670019F7DC /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = 293E023220800A660019F7DC /* main.jsbundle */; };
 		293E023520800A670019F7DC /* main.jsbundle.meta in Resources */ = {isa = PBXBuildFile; fileRef = 293E023320800A670019F7DC /* main.jsbundle.meta */; };
 		2968C4B0207C7FC6004B718C /* libRCTCameraRoll.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2968C48E207C7FB2004B718C /* libRCTCameraRoll.a */; };
+		296CE88920830D6100B385F6 /* monay.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 296CE86220830D6100B385F6 /* monay.jpg */; };
 		29BB0AF120770C0600D46C30 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
@@ -349,6 +350,7 @@
 		293E023220800A660019F7DC /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = main.jsbundle; path = SeniorProject/main.jsbundle; sourceTree = "<group>"; };
 		293E023320800A670019F7DC /* main.jsbundle.meta */ = {isa = PBXFileReference; lastKnownFileType = file; name = main.jsbundle.meta; path = SeniorProject/main.jsbundle.meta; sourceTree = "<group>"; };
 		2968C484207C7FB2004B718C /* RCTCameraRoll.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTCameraRoll.xcodeproj; path = "../node_modules/react-native/Libraries/CameraRoll/RCTCameraRoll.xcodeproj"; sourceTree = "<group>"; };
+		296CE86220830D6100B385F6 /* monay.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = monay.jpg; path = ../../../../../Downloads/monay.jpg; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* SeniorProject-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SeniorProject-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* SeniorProject-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SeniorProject-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
@@ -500,6 +502,7 @@
 		13B07FAE1A68108700A75B9A /* SeniorProject */ = {
 			isa = PBXGroup;
 			children = (
+				296CE86220830D6100B385F6 /* monay.jpg */,
 				293E023220800A660019F7DC /* main.jsbundle */,
 				293E023320800A670019F7DC /* main.jsbundle.meta */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
@@ -1126,6 +1129,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				293E023420800A670019F7DC /* main.jsbundle in Resources */,
+				296CE88920830D6100B385F6 /* monay.jpg in Resources */,
 				293E023520800A670019F7DC /* main.jsbundle.meta in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,

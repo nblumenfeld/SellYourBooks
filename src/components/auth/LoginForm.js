@@ -1,5 +1,5 @@
 import React, {Component}from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, Image } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import firebase from 'firebase';
@@ -18,7 +18,7 @@ import {
 } from '../common';
 
 class LoginForm extends Component{
-     
+
     onEmailChange(text){
         this.props.emailChanged(text);
     }
@@ -70,6 +70,10 @@ class LoginForm extends Component{
 
     render() {
         return(
+            <View style={{flex:1}}> 
+            <View style={{justifyContent:'center', alignItems:'center'}}>
+            <Image source={require('../../images/Logo.jpg')} style={{height:200, width:200}}/>
+            </View>
             <Card>
                 <CardSection>
                     <Input
@@ -92,6 +96,7 @@ class LoginForm extends Component{
                 {this.renderError()}
                 {this.renderButtons()}
             </Card>
+            </View>
         );
     }
 }

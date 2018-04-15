@@ -48,8 +48,7 @@ export const userSave = ( { email,password, firstName, lastName } ) => {
                 dispatch({type:UPDATE_USER_SUCCESS});
                 Actions.pop();
             });
-        })
-        .catch(error => console.log('failed email update', error));
+        });
     };
 };
 

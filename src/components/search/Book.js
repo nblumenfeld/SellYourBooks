@@ -14,7 +14,7 @@ class Book extends Component {
             return (
             <Image 
             style={styles.thumbnailStyle}
-            source={require('../../assets/book.png')}
+            source={{uri:'https://firebasestorage.googleapis.com/v0/b/senior-project-93b55.appspot.com/o/images%2Fbook.png?alt=media&token=18f2958a-4874-46a6-b3e7-dd169b4a0002'}}
             />
             )
         }
@@ -36,8 +36,8 @@ class Book extends Component {
                {this.renderBook()}
             </CardSection>
             <CardSection>
-                <Text>
-                    {title}
+                <Text style={{color:'#2E86AB', fontWeight:'bold'}}>
+                    Title: {title}
                 </Text>
             </CardSection>
             <CardSection>
@@ -50,8 +50,8 @@ class Book extends Component {
 
 const styles = {
     thumbnailStyle:{
-        width:150,
-        height:150
+        width:300,
+        height:300
     },
     cardSectionStyle:{
         flex:1,

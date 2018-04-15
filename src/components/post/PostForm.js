@@ -11,7 +11,7 @@ class PostForm extends Component {
     maybeRenderImage() {
         if(this.props.picture != ''){
             return(
-                <CardSection>
+                <CardSection style={styles.cardSectionStyle}>
                     <Image
                     style={styles.thumbnailStyle} 
                     source={{uri:this.props.picture}}/>
@@ -60,7 +60,7 @@ class PostForm extends Component {
                 </CardSection>
 
                 <CardSection>
-                    <Text style={{flex:1, fontSize:18, paddingLeft:20}}>Picture</Text>
+                    <Text style={{flex:1, fontSize:18, paddingLeft:20, color:'#2E86AB'}}>Picture</Text>
                     <Button onPress={() => Actions.takePicture()}>Take a picture</Button>
                 </CardSection>
 
@@ -108,11 +108,17 @@ const styles = {
     pickerTextStyle: {
         fontSize: 18,
         paddingLeft: 20,
-        flex: 1
+        flex: 1,
+        color:'#2E86AB',
+        fontWeight:'bold'
     },
     thumbnailStyle:{
-        width:100,
-        height:100
+        width:300,
+        height:300
+    },
+    cardSectionStyle:{
+        flex:1,
+        justifyContent:'center'
     }
 }
 

@@ -1,9 +1,10 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import { FlatList } from 'react-native';
+import { FlatList, View } from 'react-native';
 import { postsFetch } from '../../actions';
 import Book from '../search/Book';
+import { Footer } from '../common';
 
 class EditYourPost extends Component {
     componentWillMount() {
@@ -15,12 +16,13 @@ class EditYourPost extends Component {
     }
     render() {
         return (
-            <FlatList 
-            data={this.props.edit}
-            renderItem={({item}) => <Book book={item}
-            
-            />}
-        />
+            <View style={{flex:1}}>
+                <FlatList 
+                data={this.props.edit}
+                renderItem={({item}) => <Book book={item}/>}
+                />
+                <Footer/>
+            </View>
         );
     }
 };
