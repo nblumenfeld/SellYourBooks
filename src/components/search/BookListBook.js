@@ -23,7 +23,7 @@ class BookListBook extends Component {
                 this.setState({actualCondition:'Good'});
                 break;
             case 'O':
-                this.setState({actualCondition:'Ok'});
+                this.setState({actualCondition:'Okay'});
                 break;
             case 'P':
                 this.setState({actualCondition:'Poor'});

@@ -24,25 +24,14 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>NSAppTransportSecurity</key>	 
-	<dict>	
-		<key>NSExceptionDomains</key>	
-		<dict>	
-			<key>localhost</key>	
-			<dict>	
-				<key>NSExceptionAllowsInsecureHTTPLoads</key>	
-				<true/>	
-			</dict>	
-		</dict>	
-	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
 	<key>NSCameraUsageDescription</key>
-	<string>We are using the camera. Deal with it.</string>
+	<string>It is for taking photos of your books.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>We use the camera roll. Plz say yes.</string>
+	<string>For saving the photo to your camera roll.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Permissions plz?</string>
+	<string>For uploading the photo.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
